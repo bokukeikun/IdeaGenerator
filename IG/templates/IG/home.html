@@ -1,0 +1,35 @@
+{% extends 'IG/base.html' %}
+{% load static %}
+
+
+{% block body %}
+    
+    
+
+
+    <header>
+        <nav>
+            <ul>
+                
+            </ul>
+        </nav>
+
+    </header>
+
+    <main>
+        <center>
+
+            <h1>Idea Generator</h1>
+            <form method='get' action="">
+                {{ form.tech.label }}
+                {{ form.tech }}
+                {{ form.agri.label }}
+                {{ form.agri }}
+                {{ form.web.label }}
+            </form>
+        </center>
+    </main>
+
+
+{% endblock body %}
+

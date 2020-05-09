@@ -1,0 +1,49 @@
+
+body{
+    padding: 20px;
+}
+
+p {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+main {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+
+}
+
+.category {
+}
+
+.category_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+}
+
+.category button {
+    flex-basis: 25%;
+    max-width: 300px;
+    margin: 3%;
+    padding: 2% 0;
+}
+
+.generator_container {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    justify-content: space-around;
+}
+
+.generator_container .item {
+    width:200px;
+    
+}
+
+.item p {
+    text-align: center;
+}

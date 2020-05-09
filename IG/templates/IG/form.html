@@ -1,0 +1,74 @@
+{% extends "IG/base.html" %}
+
+
+{% block body %}
+
+<main>
+
+
+    <h1>Idea Generator</h1>
+
+    <div class="category">
+        <div class="category_container">
+
+            <button type="button" data-id="テクノロジー" class="button btn btn-outline-primary">テクノロジー</button>
+            <button type="button" data-id="農業" class="button btn btn-outline-secondary">農業</button>
+            <button type="button" data-id="WEB" class="button btn btn-outline-success">WEB</button>
+            <button type="button" data-id="AI" class="button btn btn-outline-danger">AI</button>
+            <button type="button" data-id="宗教" class="button btn btn-outline-warning">宗教</button>
+            <button type="button" data-id="feeling" class="button btn btn-outline-dark">五感</button>
+
+        </div>
+    </div>
+
+    <div class="generator">
+        <p id="choice">三つ選択してください</p>
+        <div class="generator_container">
+            <div class="item">
+                <p id="selected1">選択してください</p>
+            </div>
+            <div class="item">
+                <p id="selected2">選択してください</p>
+            </div>
+            <div class="item">
+                <p id="selected3">選択してください</p>
+            </div>
+
+        </div>
+
+
+    </div>
+    <form method='get' action="">
+        <!-- {{ form.tech.label }}
+        {{ form.tech }}
+        {{ form.agri.label }}
+        {{ form.agri }}
+        {{ form.web.label }} -->
+        <!-- {{ form.feeling.label }} -->
+    </form>
+
+</main>
+
+<script type="text/javascript">
+    var num = 0;
+    $('.button').on('click', function(){
+        $(this).data("click", ++num);
+        var click1 =  $(this).data('id');
+        var click2 =  $(this).data('id');
+        var click3 =  $(this).data('id');
+        if (num == 1) {
+            $('#selected1').text(click2);
+        }else if (num == 2) {
+            $('#selected2').text(click2);
+        }else if (num == 3) {
+            $('#selected3').text(click3);
+        }else {
+            $('#choice').text('もう選択できません');
+        }
+
+    });
+</script>
+
+
+
+{% endblock body %}
