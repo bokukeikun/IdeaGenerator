@@ -174,3 +174,33 @@ def bulletin_board(request):
 def category_create(request):
     d = {}
     return render(request, 'IG/category_create.html', d)
+
+### template views ###
+
+def index(request):
+    d = {}
+    return render(request, 'templates/index.html', d)
+
+def about(request):
+    d = {}
+    return render(request, 'templates/about.html', d)
+
+def blog(request):
+    d = {}
+    return render(request, 'templates/blog.html', d)
+
+def blog_details(request):
+    d = {}
+    return render(request, 'templates/blog_details.html', d)
+
+def contact(request):
+    d = {}
+    return render(request, 'templates/contact.html', d)
+
+def listing(request):
+    d = {}
+    return render(request, 'templates/listing.html', d)
+
+def listing_details(request):
+    d = {}
+    return render(request, 'templates/listing_details.html', d)

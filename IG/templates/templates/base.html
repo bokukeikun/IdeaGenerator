@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+{% include 'templates/head.html' %}
+
+<body>
+    {% include 'templates/page_preloder.html' %}
+    {% include 'templates/header.html' %}
+
+    {% block body %}
+    {% endblock body %}
+
+    {% include 'templates/scripts.html' %}
+</body>
+
+
+</html>
