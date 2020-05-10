@@ -6,13 +6,13 @@
 <main>
 
 
-    <h1>Idea Generator</h1>
+    <h1 class="title">Idea Generator</h1>
 
     <div class="category">
         <div class="category_container">
             <div class="item">
                 <!-- <button type="button" id="tech" data-id="テクノロジー" class="button btn btn-outline-primary">テクノロジー</button> -->
-                <button type="button" id="tech" data-id="テクノロジー" class="button big_category list-group-item list-group-item-action active">テクノロジー</button>
+                <button type="button" id="tech" data-id="テクノロジー" class="button big_category btn btn-outline-primary">テクノロジー</button>
                 <ul class="category_dropdown">
                     {% for key, values in tech.items %}
                         <li><button type="button" id="{{ key }}" data-id="{{ values }}" class="button small_category list-group-item list-group-item-action">{{ values }}</button></li>
@@ -21,7 +21,7 @@
             </div>
             <div class="item">
                 <!-- <button type="button" id="agri" data-id="農業" class="button btn btn-outline-secondary">農業</button> -->
-                <button type="button" id="agri" data-id="農業" class="button big_category list-group-item list-group-item-action active">農業</button>
+                <button type="button" id="agri" data-id="農業" class="button big_category btn btn-outline-success">農業</button>
                 <ul class="category_dropdown">
                     {% for key, values in agri.items %}
                         <li><button type="button" id="{{ key }}" data-id="{{ values }}" class="button small_category  list-group-item list-group-item-action">{{ values }}</button></li>
@@ -31,7 +31,7 @@
             </div>
             <div class="item">
                 <!-- <button type="button" id="web" data-id="WEB" class="button btn btn-outline-success">WEB</button> -->
-                <button type="button" id="web" data-id="WEB" class="button big_category list-group-item list-group-item-action active">WEB</button>
+                <button type="button" id="web" data-id="WEB" class="button big_category btn btn-outline-info">WEB</button>
                 <ul class="category_dropdown">
                     {% for key, values in web.items %}
                         <li><button type="button" id="{{ key }}" data-id="{{ values }}" class="button small_category  list-group-item list-group-item-action">{{ values }}</button></li>
@@ -42,7 +42,7 @@
             </div>
             <div class="item">
                 <!-- <button type="button" id="AI" data-id="AI" class="button btn btn-outline-danger">AI</button> -->
-                <button type="button" id="AI" data-id="AI" class="button big_category list-group-item list-group-item-action active">AI</button>
+                <button type="button" id="AI" data-id="AI" class="button big_category btn btn-outline-danger">AI</button>
                 <ul class="category_dropdown">
                     {% for key, values in AI.items %}
                         <li><button type="button" id="{{ key }}" data-id="{{ values }}" class="button small_category  list-group-item list-group-item-action">{{ values }}</button></li>
@@ -53,7 +53,7 @@
             </div>
             <div class="item">
                 <!-- <button type="button" id="religion" data-id="宗教" class="button btn btn-outline-warning">宗教</button> -->
-                <button type="button" id="religion" data-id="宗教" class="button big_category list-group-item list-group-item-action active">宗教</button>
+                <button type="button" id="religion" data-id="宗教" class="button big_category btn btn-outline-warning">宗教</button>
                 <ul class="category_dropdown">
                     {% for key, values in religion.items %}
                         <li><button type="button" id="{{ key }}" data-id="{{ values }}" class="button small_category  list-group-item list-group-item-action">{{ values }}</button></li>
@@ -64,7 +64,7 @@
             </div>
             <div class="item">
                 <!-- <button type="button" id="feeling" data-id="五感" class="button btn btn-outline-dark">五感</button> -->
-                <button type="button" id="feeling" data-id="五感" class="button big_category list-group-item list-group-item-action active">五感</button>
+                <button type="button" id="feeling" data-id="五感" class="button big_category btn btn-outline-secondary">五感</button>
                 <ul class="category_dropdown">
                     {% for key, values in feeling.items %}
                         <li><button type="button" id="{{ key }}" data-id="{{ values }}" class="button small_category  list-group-item list-group-item-action">{{ values }}</button></li>
@@ -76,7 +76,10 @@
 
         </div>
     </div>
+        
+</main>
 
+<footer>
     <div class="generator">
         <p id="choice">三つ選択してください</p>
         <div class="generator_container">
@@ -89,35 +92,31 @@
             <div class="item">
                 <p id="selected3">選択してください</p>
             </div>
+            <div class="item">
+                <button type="button" id="clear" class="clear btn btn-secondary btn-lg">クリア</button>
 
-            
-        </div>
-        <button type="button" id="clear" class="clear btn btn-secondary btn-lg">クリア</button>
-
-
+                <form method='get' action="">
+                    <!-- {{ form.tech.label }}
+                    {{ form.tech }}
+                    {{ form.agri.label }}
+                    {{ form.agri }}
+                    {{ form.web.label }} -->
+                    <!-- {{ form.feeling.label }} -->
+                    <input type="radio" name="test1" value="" checked>
+                    <input type="radio" name="test2" value="" checked>
+                    <input type="radio" name="test3" value="" checked>
+                    <input class="submit btn btn-primary btn-lg" type="submit" value="アイデア生成">
+                </form>
+            </div>
+        </div>        
     </div>
-    <form method='get' action="">
-        <!-- {{ form.tech.label }}
-        {{ form.tech }}
-        {{ form.agri.label }}
-        {{ form.agri }}
-        {{ form.web.label }} -->
-        <!-- {{ form.feeling.label }} -->
-        <input type="radio" name="test1" value="" checked>
-        <input type="radio" name="test2" value="" checked>
-        <input type="radio" name="test3" value="" checked>
-        <input class="submit btn btn-primary btn-lg" type="submit" value="アイデア生成">
-    </form>
+
     {% if text %}
     <div class="idea_generated">
         <p>{{ text }} </p>
     </div>
     {% endif %}
-    
-
-        
-</main>
-
+</footer>
 
 <script type="text/javascript">
     var num = 0;
