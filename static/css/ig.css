@@ -18,11 +18,18 @@ input[type=radio] {
 main {
     display: block;
     margin: 0 auto;
-    width: 80%;
+    width: 95%;
 
 }
 
+.title {
+    margin: 30px;
+    font-size: 50px;
+    text-align: center;
+}
+
 .category {
+    padding-bottom: 250px;
 }
 
 .category_container {
@@ -33,37 +40,36 @@ main {
 }
 
 .category .item {
-    flex-basis: 43%;
-    margin: 3%;
+    flex-basis: 33.3%;
+    margin: 0;
     padding: 2% 3%;
     border: 1px solid #cacaca;
 }
 
-.item button {
-    
-}
-
 .big_category {
     display: block;
+    height: 60px;
     width: 100%;
     max-width: 300px;
-    margin: 20px auto;
+    margin: 10px auto;
 }
 
 .category_dropdown {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    height: 400px;
+    height: 380px;
     padding: 0;
+    margin: 0;
     
 }
 
 .small_category {
-    width: 100% !important;
-    max-width: 315px;
-    min-width: 150px;
+    font-size: 13px;
+    max-width: 200px;
+    min-width: 100px;
     margin: 0 auto;
+    padding: 0.65rem 0.55rem;
 }   
 
 .generator_container {
@@ -77,36 +83,55 @@ main {
     list-style-type: none;
 }
 
+footer {
+    z-index: 1000;
+    position: fixed; /* フッターを固定する */
+    bottom: 0; /* 上部から配置の基準位置を決める */
+    left: 0; /* 左から配置の基準位置を決める */
+    width: 100%; /* フッターの横幅を指定する */
+    height: 200px; /* フッターの高さを指定する */
+    padding:10px; /* フッター内側の余白を指定する(上下左右) */
+    background-color: #fff; /* フッターの背景色を指定する */
+    color: #000; /* フッターのフォントの色を指定する */
+    border-top: 1px solid #000;
+}
+
+#choice {
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+.generator_container {
+    height: 90px;
+}
+
 .generator_container .item {
     width:200px;
 }
 
 .item p {
     text-align: center;
+    line-height: 90px;
 }
 
-.clear {
-    max-width: 240px;
-    font-weight: bold;
-    width: 20%;
-    margin: 20px auto;
-    display: block;
-}
-
+.clear,
 .submit {
+    font-size: 13px;
+    width: 100%;
+    min-width: 100px;
+    margin: 2px 0;
     max-width: 240px;
     font-weight: bold;
-    width: 20%;
-    margin: 20px auto;
     display: block;
 }
 
 .idea_generated{
-    width: 95%;
-    margin: 20px auto;
+    width: 100%;
+    margin: 0 auto;
     padding: 0;
     text-align: center;
 }
 .idea_generated p{
-    font-size: 45px;
+    font-size: 30px;
 }
