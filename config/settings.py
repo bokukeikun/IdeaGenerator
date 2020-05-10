@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #Own
     'account.apps.AccountConfig',
-    'IG.apps.IgConfig'
+    'IG.apps.IgConfig',
+
+    # Third Party
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +129,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+LOGIN_REDIRECT_URL = 'IG-home'
+LOGIN_URL = 'login'
