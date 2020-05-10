@@ -8,6 +8,13 @@ p {
     font-size: 20px;
 }
 
+input[type=radio] {
+    display: none;
+}
+.close{
+    display: none !important;
+}
+
 main {
     display: block;
     margin: 0 auto;
@@ -25,12 +32,39 @@ main {
 
 }
 
-.category button {
-    flex-basis: 25%;
-    max-width: 300px;
+.category .item {
+    flex-basis: 43%;
     margin: 3%;
-    padding: 2% 0;
+    padding: 2% 3%;
+    border: 1px solid #cacaca;
 }
+
+.item button {
+    
+}
+
+.big_category {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+.category_dropdown {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 400px;
+    padding: 0;
+    
+}
+
+.small_category {
+    width: 100% !important;
+    max-width: 315px;
+    min-width: 150px;
+    margin: 0 auto;
+}   
 
 .generator_container {
     display: flex;
@@ -39,11 +73,40 @@ main {
     justify-content: space-around;
 }
 
+.item li {
+    list-style-type: none;
+}
+
 .generator_container .item {
     width:200px;
-    
 }
 
 .item p {
     text-align: center;
+}
+
+.clear {
+    max-width: 240px;
+    font-weight: bold;
+    width: 20%;
+    margin: 20px auto;
+    display: block;
+}
+
+.submit {
+    max-width: 240px;
+    font-weight: bold;
+    width: 20%;
+    margin: 20px auto;
+    display: block;
+}
+
+.idea_generated{
+    width: 95%;
+    margin: 20px auto;
+    padding: 0;
+    text-align: center;
+}
+.idea_generated p{
+    font-size: 45px;
 }
