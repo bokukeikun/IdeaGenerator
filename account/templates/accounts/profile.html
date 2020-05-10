@@ -1,0 +1,31 @@
+{% extends "IG/base.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+<br>
+
+  <div class="card" style="width: 40rem;">
+    <img src="{{ user.profile.image.url }}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h4 class="card-title">名前: {{ user.username }}</h4>
+      <br>
+      <h4 class="card-text">メール: {{ user.email }}</h4>
+      <a href="#" class="btn btn-primary">編集</a>
+    </div>
+  </div>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">Profile Info</legend>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+      </fieldset>
+      <div class="form-group">
+      <button class="btn btn-outline-info" type="submit">Update</button>
+    </div>
+  </form>
+
+
+
+{% endblock body %}
