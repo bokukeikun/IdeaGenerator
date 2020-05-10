@@ -45,3 +45,12 @@ def category_forms(request):
         'message': message,
     }
     return render(request, 'IG/form.html', d)
+
+def bulletin_board(request):
+    d = {}
+    return render(request, 'IG/bulletin_board.html', d)
+
+
+def category_create(request):
+    d = {}
+    return render(request, 'IG/category_create.html', d)
