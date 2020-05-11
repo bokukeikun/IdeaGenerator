@@ -4,53 +4,18 @@
     <!-- Page Preloder -->
 
     <!-- Header Section Begin -->
-    <header class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-9">
-                    <div class="header__nav">
-                        <nav class="header__menu mobile-menu">
-                            <ul>
-                                <li><a href="./index.html">Home</a></li>
-                                <li class="active"><a href="./listing.html">Listing</a></li>
-                                <li><a href="#">Categories</a></li>
-                                <li><a href="#">Pages</a>
-                                    <ul class="dropdown">
-                                        <li><a href="./about.html">About</a></li>
-                                        <li><a href="./listing-details.html">Listing Details</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./contact.html">Contact</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./blog.html">Blog</a></li>
-                                <li><a href="#">Shop</a></li>
-                            </ul>
-                        </nav>
-                        <div class="header__menu__right">
-                            <a href="#" class="primary-btn"><i class="fa fa-plus"></i>Add Listing</a>
-                            <a href="#" class="login-btn"><i class="fa fa-user"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="mobile-menu-wrap"></div>
-        </div>
-    </header>
+    {% include 'templates/header.html' %}
+
     <!-- Header Section End -->
 
     <!-- Listing Section Begin -->
-    <section class="listing-hero set-bg" data-setbg="img/listing/details/listing-hero.jpg">
+    <section class="listing-hero set-bg" data-setbg="{% static 'img/listing/details/listing-hero.jpg' %}">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
                     <div class="listing__hero__option">
                         <div class="listing__hero__icon">
-                            <img src="img/listing/details/ld-icon.png" alt="">
+                            <img src="{% static 'img/listing/details/ld-icon.png' %}" alt="">
                         </div>
                         <div class="listing__hero__text">
                             <h2>Cosiana Sour Restaurant</h2>
@@ -101,18 +66,18 @@
                             <div class="listing__details__gallery__pic">
                                 <div class="listing__details__gallery__item">
                                     <img class="listing__details__gallery__item__large"
-                                        src="img/listing/details/listing-details-1.jpg" alt="">
+                                        src="{% static 'img/listing/details/listing-details-1.jpg' %}" alt="">
                                     <span><i class="fa fa-camera"></i> 170 Image</span>
                                 </div>
                                 <div class="listing__details__gallery__slider owl-carousel">
                                     <img data-imgbigurl="img/listing/details/listing-details-1.jpg"
-                                        src="img/listing/details/thumb-1.jpg" alt="">
+                                        src="{% static 'img/listing/details/thumb-1.jpg' %}" alt="">
                                     <img data-imgbigurl="img/listing/details/listing-details-1.jpg"
-                                        src="img/listing/details/thumb-2.jpg" alt="">
+                                        src="{% static 'img/listing/details/thumb-2.jpg' %}" alt="">
                                     <img data-imgbigurl="img/listing/details/listing-details-1.jpg"
-                                        src="img/listing/details/thumb-3.jpg" alt="">
+                                        src="{% static 'img/listing/details/thumb-3.jpg' %}" alt="">
                                     <img data-imgbigurl="img/listing/details/listing-details-1.jpg"
-                                        src="img/listing/details/thumb-4.jpg" alt="">
+                                        src="{% static 'img/listing/details/thumb-4.jpg' %}" alt="">
                                 </div>
                             </div>
                         </div>
@@ -121,49 +86,49 @@
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <div class="listing__details__amenities__item">
-                                        <img src="img/listing/details/amenities/ame-1.png" alt="">
+                                        <img src="{% static 'img/listing/details/amenities/ame-1.png' %}" alt="">
                                         <h6>Accept Credit Card</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <div class="listing__details__amenities__item">
-                                        <img src="img/listing/details/amenities/ame-2.png" alt="">
+                                        <img src="{% static 'img/listing/details/amenities/ame-2.png' %}" alt="">
                                         <h6>Free Wifi</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <div class="listing__details__amenities__item">
-                                        <img src="img/listing/details/amenities/ame-3.png" alt="">
+                                        <img src="{% static 'img/listing/details/amenities/ame-3.png' %}" alt="">
                                         <h6>Smoking Area</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <div class="listing__details__amenities__item">
-                                        <img src="img/listing/details/amenities/ame-4.png" alt="">
+                                        <img src="{% static 'img/listing/details/amenities/ame-4.png' %}" alt="">
                                         <h6>Free Parking</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <div class="listing__details__amenities__item">
-                                        <img src="img/listing/details/amenities/ame-5.png" alt="">
+                                        <img src="{% static 'img/listing/details/amenities/ame-5.png' %}" alt="">
                                         <h6>Family Friendly</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <div class="listing__details__amenities__item">
-                                        <img src="img/listing/details/amenities/ame-6.png" alt="">
+                                        <img src="{% static 'img/listing/details/amenities/ame-6.png' %}" alt="">
                                         <h6>Coffee</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <div class="listing__details__amenities__item">
-                                        <img src="img/listing/details/amenities/ame-7.png" alt="">
+                                        <img src="{% static 'img/listing/details/amenities/ame-7.png' %}" alt="">
                                         <h6>Massage</h6>
                                     </div>
                                 </div>
                                 <div class="col-lg-3 col-md-3 col-6">
                                     <div class="listing__details__amenities__item">
-                                        <img src="img/listing/details/amenities/ame-8.png" alt="">
+                                        <img src="{% static 'img/listing/details/amenities/ame-8.png' %}" alt="">
                                         <h6>Coupons</h6>
                                     </div>
                                 </div>
@@ -224,7 +189,7 @@
                             <h4>Comment</h4>
                             <div class="listing__details__comment__item">
                                 <div class="listing__details__comment__item__pic">
-                                    <img src="img/listing/details/comment.png" alt="">
+                                    <img src="{% static 'img/listing/details/comment.png' %}" alt="">
                                 </div>
                                 <div class="listing__details__comment__item__text">
                                     <div class="listing__details__comment__item__rating">
@@ -246,7 +211,7 @@
                             </div>
                             <div class="listing__details__comment__item">
                                 <div class="listing__details__comment__item__pic">
-                                    <img src="img/listing/details/comment.png" alt="">
+                                    <img src="{% static 'img/listing/details/comment.png' %}" alt="">
                                 </div>
                                 <div class="listing__details__comment__item__text">
                                     <div class="listing__details__comment__item__rating">
@@ -268,7 +233,7 @@
                             </div>
                             <div class="listing__details__comment__item">
                                 <div class="listing__details__comment__item__pic">
-                                    <img src="img/listing/details/comment.png" alt="">
+                                    <img src="{% static 'img/listing/details/comment.png' %}" alt="">
                                 </div>
                                 <div class="listing__details__comment__item__text">
                                     <div class="listing__details__comment__item__rating">
@@ -308,7 +273,7 @@
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24168.833995532765!2d-74.79633710628465!3d40.78172222265886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c384de7a5300b9%3A0x8afc61979217d49d!2sLong%20Valley%2C%20NJ%2007853%2C%20USA!5e0!3m2!1sen!2sbd!4v1586852528126!5m2!1sen!2sbd"
                                     height="200" style="border:0;" allowfullscreen="" aria-hidden="false"
                                     tabindex="0"></iframe>
-                                <img src="img/listing/details/map-icon.png" alt="">
+                                <img src="{% static 'img/listing/details/map-icon.png' %}" alt="">
                             </div>
                             <div class="listing__sidebar__contact__text">
                                 <h4>Contacts</h4>
@@ -374,7 +339,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="img/footer-logo.png" alt=""></a>
+                            <a href="./index.html"><img src="{% static 'img/footer-logo.png' %}" alt=""></a>
                         </div>
                         <p>Challenging the way things have always been done can lead to creative new options that reward
                             you.</p>
