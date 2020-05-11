@@ -1,6 +1,8 @@
-{% extends "IG/base.html" %}
+{% extends "accounts/account_base.html" %}
 {% load crispy_forms_tags %}
 {% block body %}
+
+
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
