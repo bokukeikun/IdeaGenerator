@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('category_forms/', views.home, name='IG-home'),
+    path('index/', views.home, name='IG-home'),
     path('category_forms/get', views.hello_get_query, name='hello_get_query'),
     # path('', views.home, name='IG-home'),
     # path('category_forms/', views.category_forms, name='category_forms'),

@@ -156,7 +156,7 @@ def home(request):
         'c': c_out,
         'text': Comb,
     }
-    return render(request, 'IG/form.html', context)
+    return render(request, 'templates/index.html', context)
 
 def hello_get_query(request):
     d = {

@@ -83,14 +83,14 @@ main {
     list-style-type: none;
 }
 
-footer {
+.footer {
     z-index: 1000;
     position: fixed; /* フッターを固定する */
     bottom: 0; /* 上部から配置の基準位置を決める */
     left: 0; /* 左から配置の基準位置を決める */
     width: 100%; /* フッターの横幅を指定する */
-    height: 200px; /* フッターの高さを指定する */
-    padding:10px; /* フッター内側の余白を指定する(上下左右) */
+    height: 165px; /* フッターの高さを指定する */
+    padding-top: 10px !important; /* フッター内側の余白を指定する(上下左右) */
     background-color: #fff; /* フッターの背景色を指定する */
     color: #000; /* フッターのフォントの色を指定する */
     border-top: 1px solid #000;
@@ -134,4 +134,26 @@ footer {
 }
 .idea_generated p{
     font-size: 30px;
+}
+
+/* index.html */
+
+.tab-pane .item {
+    width: 50%;
+    margin: auto;
+}
+
+.category_lists {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+
+.category_lists li {
+    flex-basis: 33.3%;
+}
+
+.work {
+    padding-bottom: 200px !important;
 }
