@@ -40,11 +40,13 @@ INSTALLED_APPS = [
 
     #Own
     'account.apps.AccountConfig',
+    'posted.apps.PostedConfig',
     'IG.apps.IgConfig',
 
     # Third Party
     'crispy_forms',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -1,6 +1,6 @@
 
 body{
-    padding: 20px;
+    padding: 0;
 }
 
 p {
@@ -154,6 +154,18 @@ main {
     flex-basis: 33.3%;
 }
 
+.number p {
+    line-height: 30px;
+}
+
 .work {
     padding-bottom: 200px !important;
+}
+
+
+
+/* post_list.html */
+
+.blog_item_widget {
+    display: block !important;
 }
