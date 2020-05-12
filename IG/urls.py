@@ -4,13 +4,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('index/', views.home, name='IG-home'),
+    path('', views.index, name='index'),
+    path('post/new/', views.idea_generator, name='idea_generator'),
     path('category_forms/get', views.hello_get_query, name='hello_get_query'),
     # path('', views.home, name='IG-home'),
     # path('category_forms/', views.category_forms, name='category_forms'),
     path('bulletin_board/', views.bulletin_board, name='bulletin_board'),
     path('category_create/', views.category_create, name='category_create'),
-    path('index/', views.index, name='index'),
     path('about/', views.about, name='about'),
     path('blog/', views.blog, name='blog'),
     path('blog_details/', views.blog_details, name='blog_details'),

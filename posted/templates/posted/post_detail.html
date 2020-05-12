@@ -1,0 +1,29 @@
+
+<h1>{{ object.title }}</h1>
+<p>{{ object.published_at|date }}</p>
+<p>{{ object.category.name }}</p>
+{% for tag in object.tags.all %}
+{{ tag.name }}
+{% endfor %}
+<hr>
+{{ object.content|safe }}
+
+    <div class="col-lg-6 col-md-6">
+        <div class="blog__item">
+            <div class="blog__item__text">
+                <ul class="blog__item__tags">
+                    <i class="fa fa-tags"></i>
+                </ul>
+                {% if user.is_authenticated or post.is_public %}
+                <h5>{% if not post.is_public %}[下書き] {% endif %}<a href="{% url 'posted:post_detail' post.id %}">{{ post.title }}</a></h5>
+                {% endif %}
+                
+                <p>{{ post.content|safe }}</p>
+                <ul class="blog__item__widget">
+                    <li><i class="fa fa-clock-o"></i> {{ post.category.name }} </li>
+                    <li><i class="fa fa-clock-o"></i> {{ post.published_at|date }}</li>
+                    <li><i class="fa fa-user"></i> John Smith</li>
+                </ul>
+            </div>
+        </div>
+    </div>

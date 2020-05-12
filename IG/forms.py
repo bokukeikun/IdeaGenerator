@@ -66,10 +66,16 @@ class CategoryForm(forms.Form):
         choices=Feeling_li,
         required=True,
     )
-class HelloForm(forms.Form):
-    your_name = forms.CharField(
-        label='名前',
-        max_length=20,
+class NumberForm(forms.Form):
+    number = forms.IntegerField(
+        label='生成数',
+        min_value=1,
+        max_value=10,
         required=True,
-        widget=forms.TextInput()
     )
+
+class MyForm(forms.Form):
+    name = forms.CharField()
+    email = forms.EmailField()
+    text = forms.CharField(widget=forms.Textarea)
+

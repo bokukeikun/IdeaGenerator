@@ -159,8 +159,6 @@
                                     {% for key, values in religion.items %}
                                         <li><button type="button" id="{{ key }}" data-id="{{ values }}" class="button small_category  list-group-item list-group-item-action">{{ values }}</button></li>
                                     {% endfor %}
-                                        
-                                        
                                 </ul>
                             </div>
                         </div>
@@ -226,6 +224,8 @@
     </section>
     <!-- Work Section End -->
 
+    
+
 
 
     <!-- Footer Section Begin -->
@@ -243,20 +243,19 @@
                     <p id="selected3">選択してください</p>
                 </div>
                 <div class="item">
-                    <button type="button" id="clear" class="clear btn btn-secondary btn-lg">クリア</button>
-    
-                    <form method='get' action="">
-                        <!-- {{ form.tech.label }}
-                        {{ form.tech }}
-                        {{ form.agri.label }}
-                        {{ form.agri }}
-                        {{ form.web.label }} -->
-                        <!-- {{ form.feeling.label }} -->
+                    <form method="GET" action="{% url 'posted:post_new' %}">
                         <input type="radio" name="test1" value="" checked>
                         <input type="radio" name="test2" value="" checked>
                         <input type="radio" name="test3" value="" checked>
+                        <div class="number">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        </div>
                         <input class="submit btn btn-primary btn-lg" type="submit" value="アイデア生成">
                     </form>
+                </div>
+                <div class="item">
+                    <button type="button" id="clear" class="clear btn btn-secondary btn-lg">クリア</button>
                 </div>
             </div>     
         </div>
