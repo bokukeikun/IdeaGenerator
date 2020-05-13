@@ -10,6 +10,8 @@ from .models import Post, Category, Tag
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import CreateView
 from .forms import IdeaGenerateForm
+from django.utils import timezone
+
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -98,9 +100,12 @@ def idea_generator(request):
     if request.method == 'POST':
         form = IdeaGenerateForm(request.POST)
         if form.is_valid():
-            # post = form.save(commit=False)
-            form.save()
-            # return redirect('posted:post')
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            form.save_m2m()
+            return redirect('posted:post')
     else:
         form = IdeaGenerateForm()
 
