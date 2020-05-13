@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import login_required #ryo
+
 from django.shortcuts import render
 from datetime import datetime
 from . import forms
@@ -197,7 +197,7 @@ def category_create(request):
     return render(request, 'IG/category_create.html', d)
 
 ### template views ###
-@login_required(redirect_field_name='login') # ryo
+
 def index(request):
     Tech_li = {'tech0': 'AR', 'tech1': 'VR', 'tech2': 'AI', 'tech3': 'IoT', 'tech4': '5G', 'tech5': '6G', 'tech6': '7G', 'tech7': 'CG', 'tech8': 'スマートスピーカー', 'tech9': '3dプリンタ', 'tech10': 'ブロックチェーン', 'tech11': '自動運転', 'tech12': '言語翻訳'}
     Agri_li = {'agri0': '水耕栽培', 'agri1': '地中海式農業', 'agri2': '畜産', 'agri3': '酪農', 'agri4': '園芸農業', 'agri5': '混合農業', 'agri6': 'プランテーション', 'agri7': '遊牧', 'agri8': '焼畑', 'agri9': '耕作', 'agri10': '有機栽培', 'agri11': '自然農法', 'agri12': '無農薬', 'agri13': 'バイオダイナミック農法', 'agri14': '植物工場'}
