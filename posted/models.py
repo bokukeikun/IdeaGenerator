@@ -32,7 +32,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(blank=True, null=True)
-    is_public = models.BooleanField(default=False)
+    is_public = models.BooleanField(default=True)
     image = models.ImageField(
         upload_to='post_images/', null=True, blank=True)
 

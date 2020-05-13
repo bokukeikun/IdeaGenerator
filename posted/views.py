@@ -1,6 +1,6 @@
 import random
 import os
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.db.models import Count, Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404
@@ -10,6 +10,11 @@ from .models import Post, Category, Tag
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import CreateView
 from .forms import IdeaGenerateForm
+
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 
 
 def idea_generator(request):
@@ -89,17 +94,15 @@ def idea_generator(request):
         if (a_out is not None) and (b_out is not None) and (c_out is not None):
             Comb[x] = a_out + "　×　" + b_out + "　×　" + c_out  
 
-
-        if request.method == 'POST' and form.is_valid():
-            form = IdeaGenerateForm(request.POST)
-            formset = TagInlineFormSet(request.POST, instance=post)
-            if form.is_valid():
-                post = form.save(commit=False)
-                post.save()
-                formset.save()
-                return redirect('posted:post_list')
-        else:
-            form = IdeaGenerateForm()
+    form = IdeaGenerateForm()
+    if request.method == 'POST':
+        form = IdeaGenerateForm(request.POST)
+        if form.is_valid():
+            # post = form.save(commit=False)
+            form.save()
+            # return redirect('posted:post')
+    else:
+        form = IdeaGenerateForm()
 
     context = {
         'idea1_0': idea1[0], 'idea2_0': idea2[0], 'idea3_0': idea3[0],
@@ -126,6 +129,8 @@ def idea_generator(request):
     }
     return render(request, 'posted/post_form.html', context)
 
+
+
 class PostDetailView(DetailView):
     model = Post
 
@@ -136,7 +141,10 @@ class PostDetailView(DetailView):
             raise Http404
         return obj
 
-class IndexView(ListView):
+# @login_required(redirect_field_name='login')
+class IndexView(LoginRequiredMixin, ListView):
+    login_url = '/accounts/login/'
+    redirect_field_name = 'login'
     model = Post
 
 
