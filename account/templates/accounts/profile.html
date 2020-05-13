@@ -20,6 +20,13 @@
           <h4 class="card-title">名前: {{ user.username }}</h4>
           <br>
           <h4 class="card-text">メール: {{ user.email }}</h4>
+
+          {% for obj in qs %}
+          <h4>{{　obj.title　}}</h4>
+          <h4>{{　obj.content　}}</h4>
+          <br>
+          {% endfor %}
+        
           <a href={% url 'profile_update' %} class="btn btn-primary">更新</a>
           <a href={% url 'logout' %} class="btn btn-primary">ログアウト</a>
         </div>
@@ -27,5 +34,7 @@
     </div>
   </div>
 </div>
+
+
 
 {% endblock body %}

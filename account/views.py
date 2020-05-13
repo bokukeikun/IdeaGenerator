@@ -4,6 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 
+from django.contrib.auth.models import User
+from posted.models import Post
+
 from django.contrib.auth.views import LoginView
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, LoginForm
 
@@ -51,8 +54,12 @@ def logout_user(request):
 
 @login_required
 def profile(request):
-    context = {}
+    qs = Post.objects.filter(author=request.user)
+    context = {
+        'qs': qs
+        }
     return render(request, 'accounts/profile.html', context)
+
 
 @login_required
 def profile_update(request):
