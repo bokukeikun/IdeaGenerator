@@ -7,6 +7,13 @@ p {
     font-weight: bold;
     font-size: 20px;
 }
+.margin0 {
+    margin: 0 !important;
+}
+
+.display_none {
+    display: none;
+}
 
 input[type=radio] {
     display: none;
@@ -168,4 +175,59 @@ main {
 
 .blog_item_widget {
     display: block !important;
+}
+
+/* post_form.html */
+.ig_categories {
+    padding-top: 100px;
+    padding-bottom: 0px;
+    background: #f9f9f9;
+    overflow: hidden;
+}
+
+.ig_container {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.idea_generated {
+    width: 100%;
+    float: left;
+    text-align: center;
+    margin-right: 16px;
+    -webkit-box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+    padding-top: 8px;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+    background: #ffffff;
+}
+
+.form-group label{
+    display: none !important;
+}
+
+.idea_generated span,
+form span {
+    font-size: 14px;
+    color: #707070;
+    display: block;
+    font-weight: 600;
+}
+
+.ig_work {
+    padding-bottom: 70px;
+    padding-top: 30px;
+
+}
+
+.form_container {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    -webkit-box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background: #f9f9f9;
 }

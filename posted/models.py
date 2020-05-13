@@ -13,7 +13,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-
 class Tag(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
@@ -23,7 +22,7 @@ class Tag(models.Model):
         return self.name
 
 class Post(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    category = models.ManyToManyField(Category, blank=True)
     tags = models.ManyToManyField(Tag, blank=True)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

@@ -5,7 +5,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('post/new/', views.idea_generator, name='idea_generator'),
     path('category_forms/get', views.hello_get_query, name='hello_get_query'),
     # path('', views.home, name='IG-home'),
     # path('category_forms/', views.category_forms, name='category_forms'),

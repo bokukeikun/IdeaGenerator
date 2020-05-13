@@ -7,14 +7,14 @@ from posted.views import (
     TagListView,
     CategoryPostView,
     TagPostView,
-    PostCreateView,
+    idea_generator,
     )
 
 app_name = 'posted'
 
 urlpatterns = [
     path('', IndexView.as_view(), name='post'),
-    path('new/', PostCreateView.as_view(),name='post_new'),
+    path('new/', idea_generator,name='post_new'),
     path('<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('categories/', CategoryListView.as_view(), name='category_list'),
     path('tags/', TagListView.as_view(), name='tag_list'),
