@@ -174,7 +174,7 @@
             <p>考えたアイデアをメモしましょう！</p>
         </div>
         <div class="form_container">
-            <form id="form" method="post" novalidate>
+            <form id="form" method="post" action="{% url 'posted:post' %}" novalidate>
                 {% csrf_token %}
                 <p><span>カテゴリー</span></p>
                 <div class="form-row">
