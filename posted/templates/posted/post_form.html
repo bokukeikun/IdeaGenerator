@@ -174,31 +174,31 @@
             <p>考えたアイデアをメモしましょう！</p>
         </div>
         <div class="form_container">
-            <form id="form" method="post" action="{% url 'posted:post' %}" novalidate>
+            <form id="form" method="POST" action="">
                 {% csrf_token %}
                 <p><span>カテゴリー</span></p>
                 <div class="form-row">
                     <div id="category1" class="form-group col-md-4 mb-0">
                         {{ form.category | as_crispy_field }}
                     </div>
-                    <div id="category2" class="form-group col-md-4 mb-0">
+                    {% comment %} <div id="category2" class="form-group col-md-4 mb-0">
                         {{ form.category | as_crispy_field }}
                     </div>
                     <div id="category3" class="form-group col-md-4 mb-0">
                         {{ form.category | as_crispy_field }}
-                    </div>
+                    </div> {% endcomment %}
                 </div>
                 <p><span>タグ</span></p>
                 <div class="form-row">
                     <div id="tag1" class="form-group col-md-4 mb-0">
                         {{ form.tags | as_crispy_field }}
                     </div>
-                    <div id="tag2" class="form-group col-md-4 mb-0">
+                    {% comment %} <div id="tag2" class="form-group col-md-4 mb-0">
                         {{ form.tags | as_crispy_field }}
                     </div>
                     <div id="tag3" class="form-group col-md-4 mb-0">
                         {{ form.tags | as_crispy_field }}
-                    </div>
+                    </div> {% endcomment %}
                 </div>
                 <p><span>タイトル</span></p>
                 <div class="form-row">

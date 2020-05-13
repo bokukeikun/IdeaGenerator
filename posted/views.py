@@ -9,7 +9,9 @@ from django.views.generic.list import ListView
 from .models import Post, Category, Tag
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import CreateView
+from django.utils import timezone
 from .forms import IdeaGenerateForm
+
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -98,9 +100,12 @@ def idea_generator(request):
     if request.method == 'POST':
         form = IdeaGenerateForm(request.POST)
         if form.is_valid():
-            # post = form.save(commit=False)
-            form.save()
-            # return redirect('posted:post')
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            
+            return redirect('posted:post')
     else:
         form = IdeaGenerateForm()
 
@@ -130,7 +135,6 @@ def idea_generator(request):
     return render(request, 'posted/post_form.html', context)
 
 
-
 class PostDetailView(DetailView):
     model = Post
 
@@ -141,12 +145,14 @@ class PostDetailView(DetailView):
             raise Http404
         return obj
 
-# @login_required(redirect_field_name='login')
 class IndexView(LoginRequiredMixin, ListView):
     login_url = '/accounts/login/'
     redirect_field_name = 'login'
     model = Post
-
+# def post_list(request):
+#     post = 
+#     context = {}
+#     return render(request, 'posted/post_list.html', context)
 
 class CategoryListView(ListView):
     queryset = Category.objects.annotate(
