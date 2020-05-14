@@ -35,6 +35,7 @@ class Post(models.Model):
     is_public = models.BooleanField(default=True)
     image = models.ImageField(
         upload_to='post_images/', null=True, blank=True)
+    like = models.IntegerField(default=0)
 
     class Meta:
         ordering = ['-created_at']
@@ -47,5 +48,14 @@ class Post(models.Model):
     def __str__(self):
         return self.title
     
+
+# Goodクラス
+class Good(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='good_owner')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return 'good for "' + str(self.post) + '" (by ' + str(self.owner) + ')'
 
 

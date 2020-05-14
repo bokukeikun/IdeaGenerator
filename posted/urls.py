@@ -1,19 +1,23 @@
 from django.urls import path
 
 from posted.views import (
-    IndexView,
     PostDetailView,
     CategoryListView,
     TagListView,
     CategoryPostView,
     TagPostView,
     idea_generator,
+    post_list,
+    like,
+    # api_like,
     )
 
 app_name = 'posted'
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='post'),
+    path('', post_list, name='post'),
+    path('<int:pk>/like', like, name='like'),
+    # path("api/<int:pk>/like", api_like, name="api_like"),
     path('new/', idea_generator,name='post_new'),
     path('<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('categories/', CategoryListView.as_view(), name='category_list'),
