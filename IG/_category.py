@@ -76,9 +76,9 @@ Category_li = [Phisi_li, Medi_li, Chemi_li, Tech1_li, Tech2_li, Energy_li, Natur
 x = 0
 for cat in Category_li:
     for k, v in cat.items():
-        x += 1
-        print(x)
+        Tag(name=v, slug=k).save()
 
+from posted.model import tag
 
 #######
 

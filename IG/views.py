@@ -4,9 +4,6 @@ from datetime import datetime
 from . import forms
 
 
-
-
-
 def hello_get_query(request):
     d = {
         'test1':request.GET.get('test1'),

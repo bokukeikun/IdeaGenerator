@@ -13,10 +13,13 @@ from django.utils import timezone
 from  django.core.paginator import Paginator
 from django.http.response import JsonResponse
 from django.contrib import messages
+from django.db.models import Q
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
+
+
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -223,16 +226,38 @@ def comment_delete(request, pk):
 
 @login_required(redirect_field_name='login')
 def post_list(request):
+    keyword = request.GET.get('keyword')
     object_list = Post.objects.all()
     paginator = Paginator(object_list, 10) # Show 25 contacts per page.
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    contents = {
-        'post' : Post.objects.all(),
+    # page_obj = paginator.get_page(page_number)
+    page_obj = Post.objects.all() # paginationの場合は上
+    if keyword:
+        page_obj = page_obj.filter(
+                  Q(tags__name__icontains=keyword)
+               )
+        messages.success(request, '「{}」の検索結果'.format(keyword))
+    
+    contexts = {
         'paginator': paginator,
         'page_obj': page_obj,
+        'object_list' : object_list,     
     }
-    return render(request, 'posted/post_list.html', contents)
+    return render(request, 'posted/post_list.html', contexts)
+
+# def search_result(request):
+#     queryset = Post.objects.order_by('-id')
+#     keyword = request.GET.get('keyword')
+#     if keyword:
+#         queryset = queryset.filter(
+#                  Q(title__icontains=keyword) |  Q(text__icontains=keyword)
+#                )
+#         messages.success(request, '「{}」の検索結果'.format(keyword))
+
+#     context = {
+#         'queryset': queryset,
+#         }
+#     return render(request, 'posted/post_search.html', context)
 
 
 @login_required(redirect_field_name='login')
