@@ -1,51 +1,51 @@
-##　サイエンス
+# ##　サイエンス
 Phisi_li = ['音', '光', '波', '熱', '電磁', '天体', 'ドップラー現象', '地球物理学', '物理気象']
-Medi_li = ['解剖', '生理', '薬学', '組織学', '内科', '外科', '分子生物']
-Chemi_li = ['化学反応', '気体', '固体', '液体', '生化学', '環境化学', '有機化学', '無機化学' ]
-Tech1_li = ['AR', 'VR', 'AI', 'IoT', '5G', '6G', 'CG', 'スマートスピーカー', '3dプリンタ', 'ブロックチェーン', '自動運転', '言語翻訳']
-Tech2_li = ['仮想通貨', 'インターネット', 'スマホ', 'ウェアラブル', 'xR', '3Dプリンタ', 'スマートスピーカー', '培養肉', '自動化', 'ロボット', 'オンライン']
+# Medi_li = ['解剖', '生理', '薬学', '組織学', '内科', '外科', '分子生物']
+# Chemi_li = ['化学反応', '気体', '固体', '液体', '生化学', '環境化学', '有機化学', '無機化学' ]
+# Tech1_li = ['AR', 'VR', 'AI', 'IoT', '5G', '6G', 'CG', 'スマートスピーカー', '3dプリンタ', 'ブロックチェーン', '自動運転', '言語翻訳']
+# Tech2_li = ['仮想通貨', 'インターネット', 'スマホ', 'ウェアラブル', 'xR', '3Dプリンタ', 'スマートスピーカー', '培養肉', '自動化', 'ロボット', 'オンライン']
 
-## 環境
-Energy_li = ['風力', '火力', '石炭', '石油', 'バイオエネルギー', '太陽光', 'フリーエネルギー', '永久機関']
-Nature_li = ['山', '川', '砂漠', '海', '動物', '植物', '虫']
-Agri_li = ['自然農法', '有機栽培', '植物工場', '家庭菜園']
+# ## 環境
+# Energy_li = ['風力', '火力', '石炭', '石油', 'バイオエネルギー', '太陽光', 'フリーエネルギー', '永久機関']
+# Nature_li = ['山', '川', '砂漠', '海', '動物', '植物', '虫']
+# Agri_li = ['自然農法', '有機栽培', '植物工場', '家庭菜園']
 Space_li = ['惑星', '宇宙膨張', '衛星']
 
-## 社会
-Buisiness_li = ['観光業', '農業', '工業', '水産業', '建設業', 'サービス業', '広告業', '林業', '医療']
-Infra_li = ['水道', '電気', '道路', 'ガス', '公園']
-Poli_li = ['自由主義', '社会主義', '資本主義', '共産主義', 'リベラリズム', '植民地', 'リアリズム']
-Nation_li = ['中国', 'アメリカ', 'ロシア', 'ドイツ', 'イタリア', 'フランス', 'スーダン', 'ブラジル', 'チリ', 'アルゼンチン', 'カナダ', 'インド', 'タイ', '日本', 'オーストラリア']
-Inst1_li = ['居酒屋', '１００均', 'ゲームセンタ', 'タピオカ', 'ブッフェ', '本屋', 'カフェ', '自転車屋', '玩具屋', 'コンビニ', '花屋', '駄菓子屋', '酒屋', '自動販売機', '学校', '病院', 'ガソリンスタンド']          
-Inst2_li = ['児童館', 'ジム', 'お寺', '神社', '美容院', '床屋', '不動産屋','中古店', '電気屋', 'アウトレット', '楽器屋', 'アクセサリー店', '洋服や', 'ファストフード', '文房具屋', 'ファミレス', '八百屋']
+# ## 社会
+# Buisiness_li = ['観光業', '農業', '工業', '水産業', '建設業', 'サービス業', '広告業', '林業', '医療']
+# Infra_li = ['水道', '電気', '道路', 'ガス', '公園']
+# Poli_li = ['自由主義', '社会主義', '資本主義', '共産主義', 'リベラリズム', '植民地', 'リアリズム']
+# Nation_li = ['中国', 'アメリカ', 'ロシア', 'ドイツ', 'イタリア', 'フランス', 'スーダン', 'ブラジル', 'チリ', 'アルゼンチン', 'カナダ', 'インド', 'タイ', '日本', 'オーストラリア']
+# Inst1_li = ['居酒屋', '１００均', 'ゲームセンタ', 'タピオカ', 'ブッフェ', '本屋', 'カフェ', '自転車屋', '玩具屋', 'コンビニ', '花屋', '駄菓子屋', '酒屋', '自動販売機', '学校', '病院', 'ガソリンスタンド']          
+# Inst2_li = ['児童館', 'ジム', 'お寺', '神社', '美容院', '床屋', '不動産屋','中古店', '電気屋', 'アウトレット', '楽器屋', 'アクセサリー店', '洋服や', 'ファストフード', '文房具屋', 'ファミレス', '八百屋']
 
-## 文化・教育
+# ## 文化・教育
 
-Edu_li = ['教育科目', '奨学金']
-Cust_li = ['おもてなし', 'ハグ', '握手', 'お辞儀']
-Art_li = ['絵画', '映画', '音楽', '彫刻', '建築']
-Life_li = ['スポーツ', 'エンタメ', 'アート', '食事', '料理', '睡眠', '衣服']
+# Edu_li = ['教育科目', '奨学金']
+# Cust_li = ['おもてなし', 'ハグ', '握手', 'お辞儀']
+# Art_li = ['絵画', '映画', '音楽', '彫刻', '建築']
+# Life_li = ['スポーツ', 'エンタメ', 'アート', '食事', '料理', '睡眠', '衣服']
 
-## 人間
-Sense_li = ['触覚', '味覚', '嗅覚', '視覚', '聴覚']
-Feeling_li = ['喜', '怒', '哀', '楽', '恥']
-BP_li = ['頭', '腕', '腹', 'お尻', '足', 'ちんちん', '臓器']
+# ## 人間
+# Sense_li = ['触覚', '味覚', '嗅覚', '視覚', '聴覚']
+# Feeling_li = ['喜', '怒', '哀', '楽', '恥']
+# BP_li = ['頭', '腕', '腹', 'お尻', '足', 'ちんちん', '臓器']
 
 
-lis = []
+# lis = []
 
-C = {'phisi': 'Phisi_li', 'medi': 'Medi_li', 'chemi': 'Chemi_li', 'tech1_': 'Tech1_li', 'tech_2': 'Tech2_li', 'energy': 'Energy_li', 'nature': 'Nature_li', 'agri': 'Agri_li', 'space': 'Space_li', 'buisiness': 'Buisiness_li', 'infra': 'Infra_li', 'poli': 'Poli_li', 'nation': 'Nation_li', 'inst1_': 'Inst1_li', 
-               'inst2_': 'Inst2_li', 'edu': 'Edu_li', 'cust': 'Cust_li', 'art': 'Art_li', 'life': 'Life_li', 'sense': 'Sense_li', 'feeling': 'Feeling_li', 'bp': 'BP_li'}
+# C = {'phisi': 'Phisi_li', 'medi': 'Medi_li', 'chemi': 'Chemi_li', 'tech1_': 'Tech1_li', 'tech_2': 'Tech2_li', 'energy': 'Energy_li', 'nature': 'Nature_li', 'agri': 'Agri_li', 'space': 'Space_li', 'buisiness': 'Buisiness_li', 'infra': 'Infra_li', 'poli': 'Poli_li', 'nation': 'Nation_li', 'inst1_': 'Inst1_li', 
+#                'inst2_': 'Inst2_li', 'edu': 'Edu_li', 'cust': 'Cust_li', 'art': 'Art_li', 'life': 'Life_li', 'sense': 'Sense_li', 'feeling': 'Feeling_li', 'bp': 'BP_li'}
 
-Category_li = {'phisi': Phisi_li, 'medi': Medi_li, 'chemi': Chemi_li, 'tech1_': Tech1_li, 'tech_2': Tech2_li, 'energy': Energy_li, 'nature': Nature_li, 'agri': Agri_li, 'space': Space_li, 'buisiness': Buisiness_li, 'infra': Infra_li, 'poli': Poli_li, 'nation': Nation_li, 'inst1_': Inst1_li, 
-               'inst2_': Inst2_li, 'edu': Edu_li, 'cust': Cust_li, 'art': Art_li, 'life': Life_li, 'sense': Sense_li, 'feeling': Feeling_li, 'bp': BP_li}
-for key, value in Category_li.items():
-    for i in range(len(value)):
-        t = key + str(i)
-        lis.append(t)
-    d = dict(zip(lis, value))
-    lis = []
-    print(d)
+# Category_li = {'phisi': Phisi_li, 'medi': Medi_li, 'chemi': Chemi_li, 'tech1_': Tech1_li, 'tech_2': Tech2_li, 'energy': Energy_li, 'nature': Nature_li, 'agri': Agri_li, 'space': Space_li, 'buisiness': Buisiness_li, 'infra': Infra_li, 'poli': Poli_li, 'nation': Nation_li, 'inst1_': Inst1_li, 
+#                'inst2_': Inst2_li, 'edu': Edu_li, 'cust': Cust_li, 'art': Art_li, 'life': Life_li, 'sense': Sense_li, 'feeling': Feeling_li, 'bp': BP_li}
+# for key, value in Category_li.items():
+#     for i in range(len(value)):
+#         t = key + str(i)
+#         lis.append(t)
+#     d = dict(zip(lis, value))
+#     lis = []
+#     print(d)
 
 Phisi_li = {'phisi0': '音', 'phisi1': '光', 'phisi2': '波', 'phisi3': '熱', 'phisi4': '電磁', 'phisi5': '天体', 'phisi6': 'ドップラー現象', 'phisi7': '地球物理学', 'phisi8': '物理気象'}
 Medi_li = {'medi0': '解剖', 'medi1': '生理', 'medi2': '薬学', 'medi3': '組織学', 'medi4': '内科', 'medi5': '外科', 'medi6': '分子生物'}
@@ -69,3 +69,19 @@ Life_li = {'life0': 'スポーツ', 'life1': 'エンタメ', 'life2': 'アート
 Sense_li = {'sense0': '触覚', 'sense1': '味覚', 'sense2': '嗅覚', 'sense3': '視覚', 'sense4': '聴覚'}
 Feeling_li = {'feeling0': '喜', 'feeling1': '怒', 'feeling2': '哀', 'feeling3': '楽', 'feeling4': '恥'}
 BP_li = {'bp0': '頭', 'bp1': '腕', 'bp2': '腹', 'bp3': 'お尻', 'bp4': '足', 'bp5': 'ちんちん', 'bp6': '臓器'}
+
+
+Category_li = [Phisi_li, Medi_li, Chemi_li, Tech1_li, Tech2_li, Energy_li, Nature_li, Agri_li, Space_li, Buisiness_li, Infra_li, Poli_li, Nation_li, Inst1_li, Inst2_li, Edu_li, Cust_li, Art_li, Life_li, Sense_li, Feeling_li, BP_li]
+
+x = 0
+for cat in Category_li:
+    for k, v in cat.items():
+        x += 1
+        print(x)
+
+
+#######
+
+# from posted.models import Tag
+# b = Tag(name='はげ', slug='hage')
+# b.save()
