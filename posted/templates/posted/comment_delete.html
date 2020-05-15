@@ -2,18 +2,18 @@
 {% load static %}
 {% block body %}
 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <h3>コメントを削除</h3>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<section>
+
 <form method="POST" action="">
     {% csrf_token %}
     <button type="submit" class="btn btn-danger">削除</button>
 </form>
-</section>
+
 {% endblock %}

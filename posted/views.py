@@ -242,7 +242,7 @@ def like(request, pk):
     good.post = good_post
     good.save()
     messages.success(request, '記事にGoodしました！')
-    return redirect('posted:post', pk)
+    return redirect('posted:post')
 
 
 class CategoryListView(ListView):
@@ -294,7 +294,27 @@ def mypost(request):
     }
     return render(request, 'posted/mypost.html', context)
 
+def mypost_update(request, id):
+    post = Post.objects.filter(author=request.user)
+    context = {
+        'post': post,
+    }
+    return render(request, 'posted/mypost_update.html', context)
+
+
+def mypost_delete(request, id):
+    post = get_object_or_404(Post, id=id)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('posted:mypost')
+
+    context = {
+        'post': post,
+    }
+    return render(request, 'posted/mypost_delete.html', context)
+
 # create user's own tags and elements
+
 # def list_create(request, id):
 #     original = get_object_or_404(Original, pk=id)
 #     # category = Original.objects.filter(category='Original')
