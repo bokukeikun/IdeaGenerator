@@ -1,0 +1,20 @@
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>検索結果</h1>
+    {% for message in messages %}
+    <h2>{{message}}</h2>
+    {% endfor %}
+
+    {% for q in queryset %}
+    <ul>
+        <li>
+        {{ q.created_at }}
+        {{ q.title }}
+        {{ q.content }}
+        </li>
+    </ul>
+    {% endfor %}
