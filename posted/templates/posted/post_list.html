@@ -47,17 +47,16 @@
                                     {% endif %}
                                     <p>{{ post.content|safe }}</p>
                                     <ul class="blog__item__widget">
-                                        {% for category in post.category.all %}
-                                            <li><i class="fa fa-clock-o"></i> {{ category.name }} </li>
-                                        {% endfor %}
+                                        <li>
+                                            <i class="fa fa-clock-o"></i> 
+                                            {% for category in post.category.all %}
+                                                {{ category.name }} 
+                                            {% endfor %}
+                                        </li>
                                         <li><i class="fa fa-clock-o"></i> {{ post.published_at|date }}</li>
                                         <li><i class="fa fa-user"></i>  {{ post.author }}</li>
                                         <p><a href="{% url 'posted:like' post.pk %}"><span id="like">{{ post.like }}</span>いいね！</a></p>
-                                        {% if messages %}
-                                            {% for message in messages %}
-                                            <p> {{ message }}</p>
-                                            {% endfor %}
-                                        {% endif %}
+
                                     </ul>
                                 </div>
                             </div>
