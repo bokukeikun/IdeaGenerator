@@ -54,9 +54,11 @@ def logout_user(request):
 
 @login_required
 def profile(request):
+    mypost_objs = Post.objects.filter(author=request.user)
     qs = Post.objects.filter(author=request.user)
     context = {
-        'qs': qs
+        'qs': qs,
+        'myposts': mypost_objs
         }
     return render(request, 'accounts/profile.html', context)
 

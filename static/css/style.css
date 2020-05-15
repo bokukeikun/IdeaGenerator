@@ -134,7 +134,7 @@ ol {
 }
 
 .spad {
-	padding-top: 100px;
+	padding-top: 50px !important;
 	padding-bottom: 100px;
 }
 
@@ -389,7 +389,7 @@ ol {
 -----------------------*/
 
 .hero {
-	padding: 300px 0;
+	padding: 150px 0 70px !important;
 }
 
 .hero__text .section-title h2 {

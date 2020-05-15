@@ -77,18 +77,18 @@
 
     $('.idea_generated').on('click', function(){
 
-        // for (var i=0; i<4; i++) {
-        //     if (category1 == null) {
-        //         category1 = $(this).find('.category_ja1').text();
-        //     }
-        //     else if (category2 == null) {
-        //         category2 = $(this).find('.category_ja2').text();
-        //     }
-        //     else if (category3 == null) {
-        //         category3 = $(this).find('.category_ja3').text();
-        //     }
+        for (var i=0; i<4; i++) {
+            if (category1 == null) {
+                category1 = $(this).find('.category_ja1').text();
+            }
+            else if (category2 == null) {
+                category2 = $(this).find('.category_ja2').text();
+            }
+            else if (category3 == null) {
+                category3 = $(this).find('.category_ja3').text();
+            }
 
-        // }
+        }
 
         var  categories = $('#id_category').children();
         console.log(categories);

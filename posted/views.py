@@ -222,15 +222,16 @@ def like(request, pk):
 
     good_post = Post.objects.get(pk=pk)
 
-    if good_post.author == request.user: # 同じUserのインスタンスで、pkの比較を行っている
-        messages.success(request, '自分の記事に「いいね」はできません。')
-        return redirect('posted:post')  # good_post.get_absolute_url()
-
     # 自分がpostにGoodした数を調べる
     is_good = Good.objects.filter(owner=request.user).filter(post=good_post).count()
     # ゼロより大きければ既にgood済み  is_good = 0 or 1
-    if is_good > 0:
-        messages.success(request, '既にこの記事にはGoodしています。')
+    if is_good % 2 == 1:
+        good_post.like -= 1
+        good_post.save()
+        good = Good()
+        good.owner = request.user
+        good.post = good_post
+        good.save()
         return redirect('posted:post')  # good_post.get_absolute_url()
 
     # Postのgood_countを１増やす
@@ -241,8 +242,7 @@ def like(request, pk):
     good.owner = request.user
     good.post = good_post
     good.save()
-    messages.success(request, '記事にGoodしました！')
-    return redirect('posted:post', pk)
+    return redirect('posted:post')
 
 
 class CategoryListView(ListView):
