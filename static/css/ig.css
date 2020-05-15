@@ -231,3 +231,18 @@ form span {
     border-radius: 5px;
     background: #f9f9f9;
 }
+
+
+/* post_list.html  */
+
+.page_now {
+    font-size: 15px;
+    font-weight: bold;
+    color: #707070;
+    display: inline-block;
+    padding: 12px 20px 10px;
+    border: 1px solid #e4e4e4;
+    margin-right: -5px;
+    -webkit-transition: all, 0.3s;
+    transition: all, 0.3s;
+}
