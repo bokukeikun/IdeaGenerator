@@ -1,15 +1,14 @@
 import random
 import os
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db.models import Count, Q
 from django.http import Http404
-from django.shortcuts import get_object_or_404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from .models import Post, Category, Tag, Good
+from .models import Post, Category, Tag, Comment, Good
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import CreateView
-from .forms import IdeaGenerateForm
+from .forms import IdeaGenerateForm, CommentForm
 from django.utils import timezone
 from  django.core.paginator import Paginator
 from django.http.response import JsonResponse
@@ -131,7 +130,7 @@ def idea_generator(request):
 
 
         if (a_out is not None) and (b_out is not None) and (c_out is not None):
-            Comb[x] = a_out + "　×　" + b_out + "　×　" + c_out  
+            Comb[x] = a_out + "　×　" + b_out + "　×　" + c_out
 
     form = IdeaGenerateForm()
     if request.method == 'POST':
@@ -175,16 +174,33 @@ def idea_generator(request):
     return render(request, 'posted/post_form.html', context)
 
 
+def post_detail(request, id):
+    post = get_object_or_404(Post, id=id)
+    form = CommentForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.instance.user = request.user
+            form.instance.post = post
+            form.save()
+            return redirect(reverse("posted:post_detail", kwargs={
+                'id': post.pk
+            }))
 
-class PostDetailView(DetailView):
-    model = Post
+    context = {
+        'form': form,
+        'post': post,
+    }
+    return render(request, 'posted/post_detail.html', context)
 
-    def get_object(self, queryset=None):
-        obj = super().get_object(queryset=queryset)
-        #  公開していないかつログインしていない場合、下書きを表示できない
-        if not obj.is_public and not self.request.user.is_authenticated:
-            raise Http404
-        return obj
+def comment_delete(request, pk):
+    comment = get_object_or_404(Comment, pk=pk)
+    if request.method == 'POST':
+        comment.delete()
+        return redirect('../../')
+
+    context = {}
+    return render(request, 'posted/comment_delete.html', context)
+
 
 @login_required(redirect_field_name='login')
 def post_list(request):
@@ -270,3 +286,32 @@ class TagPostView(ListView):
         context = super().get_context_data(**kwargs)
         context['tag'] = self.tag
         return context
+
+def mypost(request):
+    mypost_objs = Post.objects.filter(author=request.user)
+    context = {
+        'myposts': mypost_objs
+    }
+    return render(request, 'posted/mypost.html', context)
+
+# create user's own tags and elements
+# def list_create(request, id):
+#     original = get_object_or_404(Original, pk=id)
+#     # category = Original.objects.filter(category='Original')
+#     form = TagElementsCreateForm()
+
+#     if request.method == 'POST':
+#         form = TagElementsCreateForm(request.POST)
+#         add_tag = Tag.objects.create()
+#         if form.is_valid():
+#             post = form.save(commit=False) 
+#             post.author = request.user
+#             post.category = 'Original'   
+#             post.save()
+
+#     context ={
+#         # 'category': category,
+#         'form': form,
+#         'original': original,
+#     }
+#     return render(request, 'posted/list_create.html', context)
