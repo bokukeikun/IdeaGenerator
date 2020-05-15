@@ -5,12 +5,18 @@ from django.db.models import Count, Q
 from django.http import Http404
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
-from .models import Post, Category, Tag, Comment
+from .models import Post, Category, Tag, Comment, Good
 from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import CreateView
 from .forms import IdeaGenerateForm, CommentForm
 from django.utils import timezone
-
+from  django.core.paginator import Paginator
+from django.http.response import JsonResponse
+from django.contrib import messages
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import authentication, permissions
+from django.contrib.auth.models import User
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -27,10 +33,12 @@ def idea_generator(request):
     Religion_li = {'religion0': 'ユダヤ教', 'religion1': 'キリスト教系', 'religion2': 'キリスト教', 'religion3': 'キリスト教系新宗教', 'religion4': 'イスラーム', 'religion5': 'インド宗教', 'religion6': 'ヒンドゥー教', 'religion7': 'インドの自由思想家', 'religion8': 'ジャイナ教', 'religion9': 'シク教', 'religion10': 'ゾロアスター教', 'religion11': '仏教', 'religion12': 'インド仏教', 'religion13': '南伝仏教', 'religion14': '北伝仏教'}
     Feeling_li = {'feeling0': '触覚', 'feeling1': '味覚', 'feeling2': '嗅覚', 'feeling3': '視覚', 'feeling4': '聴覚'}
 
-    Category_li = [Tech_li, Agri_li, Web_service_li, Religion_li, Feeling_li, ]
+    Category_li = [Tech_li, Agri_li, Web_service_li, AI_li, Religion_li, Feeling_li, ]
 
-    Categories = {'tech': Tech_li, 'agri': Agri_li, 'feeling': Feeling_li,
-     'web':Web_service_li, 'AI': AI_li, 'religion': Religion_li}
+    Categories = {'tech': Tech_li, 'agri': Agri_li, 'web':Web_service_li,
+     'AI': AI_li, 'religion': Religion_li, 'feeling': Feeling_li}
+    Categories_ja = {'tech': 'テクノロジー', 'agri': '農業', 'web': 'Web', 'AI': 'AI', 'religion': '宗教', 'feeling': '五感' }
+
 
     a = request.GET.get('test1')
     b = request.GET.get('test2')
@@ -41,12 +49,20 @@ def idea_generator(request):
     idea2 = [None,None,None,None,None,None,None,None,None,None]
     idea3 = [None,None,None,None,None,None,None,None,None,None]
     
-
+    #ideaを指定された数ランダム生成
     for x in range(int(number)):
         a_out = None
         b_out = None
         c_out = None
+        a_category = None
+        b_category = None
+        c_category = None
+        a_categories_ja = None
+        b_categories_ja = None
+        c_categories_ja = None
+        
 
+        #カテゴリーを選択されたときのランダム生成
         for category, value in Categories.items():
             if (a != b and a != c and b != c):
                 if (category == a):
@@ -79,19 +95,40 @@ def idea_generator(request):
                 elif (category == a):
                     a_out = random.choice(list(value.values()))
 
-        for i in range(len(Category_li)):
-            for k in range(len(Category_li[i])):
+        #listを選択されたときのアイデア生成
+        for i in range(3):
+            for i in range(len(Category_li)):
                 for key, value in Category_li[i].items():
-                    if key == a:
+                    if key == a and a_out == None:
                         a_out = value
-                    elif key == b:
+                    elif key == b and b_out == None:
                         b_out = value
-                    elif key == c:
+                    elif key == c and c_out == None:
                         c_out = value
 
-            idea1[x] = a_out
-            idea2[x] = b_out
-            idea3[x] = c_out
+                    idea1[x] = a_out
+                    idea2[x] = b_out
+                    idea3[x] = c_out
+                    
+            #getから取得したのがlistのときカテゴリーを出力
+            for k, v in Categories.items():
+                for key, value in v.items():
+                    if key == a and a_category == None:
+                        a_category = k
+                    elif key == b and b_category == None:
+                        b_category = k
+                    elif key == c and c_category == None:
+                        c_category = k
+
+            for key, value in Categories_ja.items():
+                if key == a_category and a_categories_ja == None:
+                    a_categories_ja = value
+                elif key == b_category and b_categories_ja == None:
+                    b_categories_ja = value
+                elif key == c_category and c_categories_ja == None:
+                    c_categories_ja = value
+
+
         if (a_out is not None) and (b_out is not None) and (c_out is not None):
             Comb[x] = a_out + "　×　" + b_out + "　×　" + c_out
 
@@ -129,6 +166,9 @@ def idea_generator(request):
         'text7': Comb[7],
         'text8': Comb[8],
         'text9': Comb[9],
+        'category1': a_categories_ja,
+        'category2': b_categories_ja,
+        'category3': c_categories_ja,
         'form': form,
     }
     return render(request, 'posted/post_form.html', context)
@@ -162,23 +202,47 @@ def comment_delete(request, pk):
     return render(request, 'posted/comment_delete.html', context)
 
 
+@login_required(redirect_field_name='login')
+def post_list(request):
+    object_list = Post.objects.all()
+    paginator = Paginator(object_list, 10) # Show 25 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    contents = {
+        'post' : Post.objects.all(),
+        'paginator': paginator,
+        'page_obj': page_obj,
+    }
+    return render(request, 'posted/post_list.html', contents)
 
 
+@login_required(redirect_field_name='login')
+def like(request, pk):
+    #いいね機能
 
-# class PostDetailView(DetailView):
-#     model = Post
+    good_post = Post.objects.get(pk=pk)
 
-#     def get_object(self, queryset=None):
-#         obj = super().get_object(queryset=queryset)
-#         #  公開していないかつログインしていない場合、下書きを表示できない
-#         if not obj.is_public and not self.request.user.is_authenticated:
-#             raise Http404
-#         return obj
+    if good_post.author == request.user: # 同じUserのインスタンスで、pkの比較を行っている
+        messages.success(request, '自分の記事に「いいね」はできません。')
+        return redirect('posted:post')  # good_post.get_absolute_url()
 
-class IndexView(LoginRequiredMixin, ListView):
-    login_url = '/accounts/login/'
-    redirect_field_name = 'login'
-    model = Post
+    # 自分がpostにGoodした数を調べる
+    is_good = Good.objects.filter(owner=request.user).filter(post=good_post).count()
+    # ゼロより大きければ既にgood済み  is_good = 0 or 1
+    if is_good > 0:
+        messages.success(request, '既にこの記事にはGoodしています。')
+        return redirect('posted:post')  # good_post.get_absolute_url()
+
+    # Postのgood_countを１増やす
+    good_post.like += 1
+    good_post.save()
+    # Goodを作成し、設定して保存
+    good = Good()
+    good.owner = request.user
+    good.post = good_post
+    good.save()
+    messages.success(request, '記事にGoodしました！')
+    return redirect('posted:post', pk)
 
 
 class CategoryListView(ListView):

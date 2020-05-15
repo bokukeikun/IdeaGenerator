@@ -1,13 +1,14 @@
 from django.urls import path
 
 from posted.views import (
-    IndexView,
-    # PostDetailView,
     CategoryListView,
     TagListView,
     CategoryPostView,
     TagPostView,
     idea_generator,
+    post_list,
+    like,
+    # api_like,
     mypost,
     post_detail,
     comment_delete
@@ -16,7 +17,9 @@ from posted.views import (
 app_name = 'posted'
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='post'),
+    path('', post_list, name='post'),
+    path('<int:pk>/like', like, name='like'),
+    # path("api/<int:pk>/like", api_like, name="api_like"),
     path('new/', idea_generator,name='post_new'),
     path('<int:id>/', post_detail, name='post_detail'),
     path('comment_delete/<int:pk>/', comment_delete, name='comment_delete'),

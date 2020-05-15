@@ -51,39 +51,81 @@
     
 
 
-   var Categories_ja = {'tech': 'テクノロジー', 'agri': '農業', 'feeling': '五感', 'web': 'Web', 'AI': 'AI', 'religion': '宗教' }
-
-   var category1 = arg.test1;
-   var category2 = arg.test2;
-   var category3 = arg.test3;
-
-   for (var i=0; i<4; i++) {
-       for (var key in Categories_ja) {
-           if (category1 == key) {
-               category1 = Categories_ja[key];
-           }
-           else if (category2 == key) {
-               category2 = Categories_ja[key];
-           }
-           else if (category3 == key) {
-               category3 = Categories_ja[key];
-           }
-       }
-  }
+   var Categories_ja = {'tech': 'テクノロジー', 'agri': '農業', 'web': 'Web', 'AI': 'AI', 'religion': '宗教', 'feeling': '五感' };
    
 
+   var category1_get = arg.test1;
+   var category2_get = arg.test2;
+   var category3_get = arg.test3;
+   var category1 = null;
+   var category2 = null;
+   var category3 = null;
 
-
+   for (var i=0; i<4; i++) {
+        for (var key in Categories_ja) {
+            if (category1_get == key && category1 == null) {
+                category1 = Categories_ja[key];
+            }
+            else if (category2_get == key && category2 == null) {
+                category2 = Categories_ja[key];
+            }
+            else if (category3_get == key && category3 == null) {
+                category3 = Categories_ja[key];
+            }
+        }
+    }
 
     $('.idea_generated').on('click', function(){
+
+        // for (var i=0; i<4; i++) {
+        //     if (category1 == null) {
+        //         category1 = $(this).find('.category_ja1').text();
+        //     }
+        //     else if (category2 == null) {
+        //         category2 = $(this).find('.category_ja2').text();
+        //     }
+        //     else if (category3 == null) {
+        //         category3 = $(this).find('.category_ja3').text();
+        //     }
+
+        // }
+
+        var  categories = $('#id_category').children();
+        console.log(categories);
+
+        for (var i=0; i<categories.length; i++) {
+            if (category1 == categories.eq(i).text()){
+                categories.eq(i).attr('selected', 'selected');
+            }
+            else if (category2 == categories.eq(i).text()){
+                categories.eq(i).attr('selected', 'selected');
+            }
+            else if (category3 == categories.eq(i).text()){
+                categories.eq(i).attr('selected', 'selected');
+            }
+        }
         $('#category1').find('.current').text(category1);
         $('#category2').find('.current').text(category2);
         $('#category3').find('.current').text(category3);
     });
+        
     $('.idea_generated').on('click', function(){
         var tag1 = $(this).find('.idea1').text();
         var tag2 = $(this).find('.idea2').text();
         var tag3 = $(this).find('.idea3').text();
+
+        var  tags = $('#id_tags').children();
+        for (var i=0; i<tags.length; i++) {
+            if (tag1 == tags.eq(i).text()){
+                tags.eq(i).attr('selected', 'selected');
+            }
+            else if (tag2 == tags.eq(i).text()){
+                tags.eq(i).attr('selected', 'selected');
+            }
+            else if (tag3 == tags.eq(i).text()){
+                tags.eq(i).attr('selected', 'selected');
+            }
+        }
         $('#tag1').find('.current').text(tag1);
         $('#tag2').find('.current').text(tag2);
         $('#tag3').find('.current').text(tag3);
