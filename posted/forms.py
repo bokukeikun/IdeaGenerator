@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post, Comment
 
 class IdeaGenerateForm(forms.ModelForm):
 
@@ -11,6 +11,17 @@ class IdeaGenerateForm(forms.ModelForm):
             super().__init__(*args, **kwargs)
             self.fields['title'].widget.attrs.update({'class': 'special'})
 
+class CommentForm(forms.ModelForm):
+    content = forms.CharField(label="", widget=forms.Textarea(attrs={
+        'class': 'form-control',
+        'placeholder': '公開コメントを入力',
+    }))
+    class Meta:
+        model = Comment
+        fields = [ 'content' ]
 
 
-
+# class TagElementsCreateForm(forms.ModelForm):
+#     class Meta:
+#         model = Original
+#         fields = ['tags', 'elements']
