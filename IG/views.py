@@ -41,7 +41,6 @@ def index(request):
         'religion': Religion_li,
         'feeling': Feeling_li,
         'form': forms.NumberForm(),
-
     }
     return render(request, 'templates/index.html', d)
 
