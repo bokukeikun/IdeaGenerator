@@ -10,7 +10,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import CreateView
 from .forms import IdeaGenerateForm, CommentForm
 from django.utils import timezone
-from  django.core.paginator import Paginator
+from  django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.http.response import JsonResponse
 from django.contrib import messages
 from django.db.models import Q
@@ -223,41 +223,111 @@ def comment_delete(request, pk):
     context = {}
     return render(request, 'posted/comment_delete.html', context)
 
+## オリジナル
+# @login_required(redirect_field_name='login')
+# def post_list(request):
+#     keyword = request.GET.get('keyword')
+#     object_list = Post.objects.all()
+#     paginator = Paginator(object_list, 10) # Show 25 contacts per page.
+#     page_number = request.GET.get('page')
+#     # page_obj = paginator.get_page(page_number)
+#     page_obj = Post.objects.all() # paginationの場合は上
+
+#     if keyword:
+#         page_obj = page_obj.filter(
+#                   Q(tags__name__icontains=keyword)
+#                )
+#         messages.success(request, '「{}」の検索結果'.format(keyword))
+    
+#     context = {
+#         'paginator': paginator,
+#         'page_obj': page_obj,
+#         'object_list' : object_list,     
+#     }
+#     return render(request, 'posted/post_list.html', context)
 
 @login_required(redirect_field_name='login')
 def post_list(request):
-    keyword = request.GET.get('keyword')
     object_list = Post.objects.all()
-    paginator = Paginator(object_list, 10) # Show 25 contacts per page.
+    paginator = Paginator(object_list, 10) # Show 10 posts per page.
     page_number = request.GET.get('page')
-    # page_obj = paginator.get_page(page_number)
-    page_obj = Post.objects.all() # paginationの場合は上
-    if keyword:
-        page_obj = page_obj.filter(
-                  Q(tags__name__icontains=keyword)
-               )
-        messages.success(request, '「{}」の検索結果'.format(keyword))
+    page_obj = paginator.get_page(page_number)
+    # page_obj = Post.objects.all() # paginationの場合は上
+
+    # if keyword:
+    #     page_obj = page_obj.filter(
+    #               Q(tags__name__icontains=keyword)
+    #            )
+    #     messages.success(request, '「{}」の検索結果'.format(keyword))
     
-    contexts = {
+    context = {
         'paginator': paginator,
         'page_obj': page_obj,
         'object_list' : object_list,     
     }
-    return render(request, 'posted/post_list.html', contexts)
+    return render(request, 'posted/post_list.html', context)
 
-# def search_result(request):
-#     queryset = Post.objects.order_by('-id')
-#     keyword = request.GET.get('keyword')
-#     if keyword:
-#         queryset = queryset.filter(
-#                  Q(title__icontains=keyword) |  Q(text__icontains=keyword)
-#                )
+def post_search_list(request):
+    posts = None
+    keyword = None
+    #検索機能の実装
+    if 'keyword' in request.GET:
+        keyword = request.GET.get('keyword')
+        posts = Post.objects.all().filter(Q(tags__name__icontains=keyword))
+    #ページネーションの実装
+    paginator = Paginator(posts, 10)
+    try:
+        page = int(request.GET.get('page','1'))
+    except:
+        page = 1
+    try:
+        posts = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        posts = paginator.page(paginator.num_pages)
+    #追加
+    csrf_token = request.GET.get('csrfmiddlewaretoken')
+    #修正
+    context = {
+        'keyword':keyword, 
+        'posts':posts, 
+        'csrf_token':csrf_token
+        }
+
+    return render(request, 'posted/post_search_list.html', context)
+
+# @login_required(redirect_field_name='login')
+# def post_list(request):
+#     object_list = None
+#     keyword = None
+#     #検索機能の実装
+#     if 'keyword' in request.GET:
+#         keyword = request.GET.get('keyword')
+#         object_list = Post.objects.all().filter(Q(tags__name__icontains=keyword))
 #         messages.success(request, '「{}」の検索結果'.format(keyword))
+#     #ページネーションの実装
+#     paginator = Paginator(object_list, 10)
+#     try:
+#         page_number = int(request.GET.get('page', '1'))
+#     except:
+#         page_number = 1
+#     # try:
+#     #     object_list = paginator.page(page_number)
+#     # except (EmptyPage, InvalidPage):
+#     #     object_list = paginator.page(paginator.num_pages)
+
+#     csrf_token = request.GET.get('csrfmiddlewaretoken')
 
 #     context = {
-#         'queryset': queryset,
+#         'keyword':keyword, 
+#         'object_list':object_list, 
+#         'paginator': paginator, 
+#         'csrf_token':csrf_token,
 #         }
-#     return render(request, 'posted/post_search.html', context)
+
+#     return render(request, 'posted/post_list.html', context)
+
+
+
 
 
 @login_required(redirect_field_name='login')
