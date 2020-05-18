@@ -107,11 +107,13 @@
                         <div class="blog__sidebar__categories">
                             <h5>Categories</h5>
                             <ul>
+
                                 {% for category in category_num %}
-                                <li><a href="{% url 'posted:category_post' category.slug %}">{{ category.name }} <span>{{ category.number_of_post }}</span></a></li>
+                                    <li><a href="{% url 'posted:category_post' category.slug %}">{{ category.name }} <span>{{ category.number_of_post }}</span></a></li>
                                 {% empty %}
-                                <li>カテゴリはありません。</li>
+                                    <li>カテゴリはありません。</li>
                                 {% endfor %}
+
                             </ul>
                         </div>
                         <div class="blog__sidebar__tags">

@@ -253,16 +253,22 @@ def post_list(request):
     page_obj = paginator.get_page(page_number)
     
     context = {
+        'post': Post.objects.all(),
+        'category_num': category_num, 
         'paginator': paginator,
         'page_obj': page_obj,
-        'object_list' : object_list,     
+        'object_list' : object_list,
+         
     }
     return render(request, 'posted/post_list.html', context)
+
 
 def post_search_list(request):
     posts = None
     keyword = None
+    category_num = Category.objects.annotate(number_of_post=Count('post')).order_by('timestamp')
     like = 'いいね'
+    search = '検索'
     #検索機能の実装
     if 'keyword' in request.GET:
         keyword = request.GET.get('keyword')
@@ -280,16 +286,70 @@ def post_search_list(request):
     #追加
     csrf_token = request.GET.get('csrfmiddlewaretoken')
     page_obj = paginator.get_page(page)
+    messages.success(request, '「{}」の検索結果'.format(keyword))
     #修正
     context = {
         'keyword':keyword, 
         'posts':posts, 
         'csrf_token':csrf_token,
         'like': like,
+        'search': search,
         'page_obj': page_obj,
+        'category_num': category_num,  
+
         }
 
     return render(request, 'posted/post_search_list.html', context)
+
+
+@login_required(redirect_field_name='login')
+def category_post(request, category_slug):
+    category = get_object_or_404(Category, slug=category_slug)
+    queryset = Post.objects.all().filter(Q(category__name__icontains=category))
+    category_num = Category.objects.annotate(number_of_post=Count('post')).order_by('timestamp')
+    paginator = Paginator(queryset, 10) # Show 10 posts per page.
+    try:
+        page = int(request.GET.get('page', '1'))
+    except:
+        page = 1
+    try:
+        queryset = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        queryset = paginator.page(paginator.num_pages)
+
+    #追加
+    csrf_token = request.GET.get('csrfmiddlewaretoken')
+    page_obj = paginator.get_page(page)
+    
+    context = {
+        'post': Post.objects.all(),
+        'category_num': category_num, 
+        'paginator': paginator,
+        'page_obj': page_obj,
+        'category': category,
+        'queryset': queryset,
+        'csrf_token':csrf_token,
+         
+    }
+    return render(request, 'posted/category_post.html', context)
+
+# @login_required(redirect_field_name='login')
+# def post_list(request):
+#     object_list = Post.objects.all()
+#     category_num = Category.objects.annotate(number_of_post=Count('post')).order_by('timestamp')
+#     paginator = Paginator(object_list, 10) # Show 10 posts per page.
+#     page_number = request.GET.get('page')
+#     page_obj = paginator.get_page(page_number)
+    
+#     context = {
+#         'post': Post.objects.all(),
+#         'category_num': category_num, 
+#         'paginator': paginator,
+#         'page_obj': page_obj,
+#         'object_list' : object_list,
+         
+#     }
+#     return render(request, 'posted/post_list.html', context)
 
 
 @login_required(redirect_field_name='login')
@@ -320,34 +380,53 @@ def like(request, pk):
     good.save()
     return redirect('posted:post')
 
+# class CategoryListView(ListView):
+#     queryset = Category.objects.annotate(
+#         num_posts=Count('post', filter=Q(post__is_public=True)))
 
-class CategoryListView(ListView):
-    queryset = Category.objects.annotate(
-        num_posts=Count('post', filter=Q(post__is_public=True)))
+def category_list(request):
+    posts = None
+    keyword = None
+    category_num = Category.objects.annotate(number_of_post=Count('post')).order_by('timestamp')
+    like = 'いいね'
+    search = '検索'
+    #検索機能の実装
+    if 'keyword' in request.GET:
+        keyword = request.GET.get('keyword')
+        categories = Category.objects.annotate(
+            num_posts=Count('post', filter=Q(post__is_public=True)))
+    #ページネーションの実装
+    paginator = Paginator(posts, 10)
+    try:
+        page = int(request.GET.get('page', '1'))
+    except:
+        page = 1
+    try:
+        categories = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        categories = paginator.page(paginator.num_pages)
+    #追加
+    csrf_token = request.GET.get('csrfmiddlewaretoken')
+    page_obj = paginator.get_page(page)
+    messages.success(request, '「{}」の検索結果'.format(keyword))
+    #修正
+    context = {
+        'keyword': keyword, 
+        'categories': categories, 
+        'csrf_token': csrf_token,
+        'like': like,
+        'search': search,
+        'page_obj': page_obj,
+        'category_num': category_num,
+        }
+
+    return render(request, 'posted/category_list.html', context)
 
 
 class TagListView(ListView):
     # annotate()に集計関数のCount()を引数として渡す
     queryset = Tag.objects.annotate(
         num_posts=Count('post', filter=Q(post__is_public=True)))
-
-
-class CategoryPostView(ListView):
-    model = Post
-    template_name = 'posted/category_post.html'
-    # queryset = Category.objects.annotate(
-    #     num_posts=Count('post', filter=Q(post__is_public=True)))
-
-    def get_queryset(self):
-        category_slug = self.kwargs['category_slug']
-        self.category = get_object_or_404(Category, slug=category_slug)
-        qs = super().get_queryset().filter(category=self.category)
-        return qs
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['category'] = self.category
-        return context
 
 
 class TagPostView(ListView):

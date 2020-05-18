@@ -5,4 +5,10 @@
   {% empty %}
   <li>カテゴリはありません。</li>
   {% endfor %}
+
+  {% for category in category_num %}
+      <li><a href="{% url 'posted:category_post' category.slug %}">{{ category.name }} <span>{{ category.number_of_post }}</span></a></li>
+  {% empty %}
+      <li>カテゴリはありません。</li>
+  {% endfor %}
 </ul>
