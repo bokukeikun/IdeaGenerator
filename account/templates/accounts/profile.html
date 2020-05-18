@@ -86,14 +86,9 @@
                           </div>
                       </section>
                     </div>
+              </div>
             </div>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
     </section>
 
 {% endblock body %}
@@ -109,8 +104,8 @@
           <br>
           <h4 class="card-text">メール: {{ user.email }}</h4>
         
-          <a href={% url 'profile_update' %} class="btn btn-primary">更新</a>
-          <a href={% url 'logout' %} class="btn btn-primary">ログアウト</a>
+          <a href="{% url 'profile_update' %}" class="btn btn-primary">更新</a>
+          <a href="{% url 'logout' %}" class="btn btn-primary">ログアウト</a>
         </div>
       </div>
     </div>
