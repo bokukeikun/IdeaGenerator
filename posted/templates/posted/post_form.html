@@ -195,9 +195,10 @@
                         {% endif %}
                 </div>
             </div>
+            </div>
         </div>
     </section>
-
+    
     <section class="ig_work">
         <div class="section-title margin0">
             <h2>Create New Idea</h2>
@@ -254,7 +255,14 @@
                     <div class="form-group col-md-12 mb-0">
                         {{ form.content | as_crispy_field }}
                     </div>
+                    {% if user.is_authenticated %}
                     <button type="submit" class="btn btn-primary">アイデアを投稿</button>
+                    {% else %}
+                    <div class="section-title margin0" style="width: 100%">
+                        <span>投稿するにはログインしてください</span>
+                        <a href="{% url 'login' %}" class="btn btn-outline-dark">ログイン</a>            
+                    </div>
+                    {% endif %}
                 </div>
             </form>
 

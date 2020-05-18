@@ -29,6 +29,18 @@ main {
 
 }
 
+/* login.html */
+
+.login_container {
+    height: 100%;
+    padding-top: 0;
+    padding-bottom: 0px;
+    background: #f9f9f9;
+    overflow: hidden;
+}
+
+
+
 /* noimg_header */
 
 .noimg_header {
@@ -39,6 +51,9 @@ main {
 .noimg_header .header__menu ul li a {
     color: #323232;
 }
+
+/* index.html */
+
 .title {
     margin: 30px;
     font-size: 50px;
