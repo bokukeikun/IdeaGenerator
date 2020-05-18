@@ -14,12 +14,15 @@ from posted.views import (
     comment_delete,
     mypost_update,
     mypost_delete,
+    post_search_list,
     )
 
 app_name = 'posted'
 
 urlpatterns = [
     path('', post_list, name='post'),
+    path('search/', post_search_list, name='post_search_list'),
+    # path('search_result/', search_result, name='search_result'),
     path('<int:pk>/like', like, name='like'),
     # path("api/<int:pk>/like", api_like, name="api_like"),
     path('new/', idea_generator,name='post_new'),
