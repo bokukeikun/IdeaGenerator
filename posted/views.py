@@ -248,7 +248,6 @@ def comment_delete(request, pk):
 @login_required(redirect_field_name='login')
 def post_list(request):
     object_list = Post.objects.all()
-<<<<<<< HEAD
     category_num = Category.objects.annotate(number_of_post=Count('post')).order_by('timestamp')
     paginator = Paginator(object_list, 10) # Show 25 contacts per page.
     page_number = request.GET.get('page')
@@ -256,25 +255,11 @@ def post_list(request):
     contents = {
         'post' : Post.objects.all(),
         'category_num' : category_num,
-=======
-    paginator = Paginator(object_list, 10) # Show 10 posts per page.
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    # page_obj = Post.objects.all() # paginationの場合は上
-
-    # if keyword:
-    #     page_obj = page_obj.filter(
-    #               Q(tags__name__icontains=keyword)
-    #            )
-    #     messages.success(request, '「{}」の検索結果'.format(keyword))
-    
-    context = {
->>>>>>> dad5172ec9f24721c82a9a1585f7c3384e08f372
         'paginator': paginator,
         'page_obj': page_obj,
         'object_list' : object_list,     
     }
-    return render(request, 'posted/post_list.html', context)
+    return render(request, 'posted/post_list.html', contents)
 
 def post_search_list(request):
     posts = None
