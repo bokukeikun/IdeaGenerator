@@ -76,14 +76,14 @@
                                         </li>
                                         <li><i class="fa fa-clock-o"></i> {{ post.published_at|date }}</li>
                                         <li><i class="fa fa-user"></i>  {{ post.author }}</li>
-                                        <p><a href="{% url 'posted:like' post.pk %}"><span id="like">{{ post.like }}</span>????</a></p>
+                                        <p><a href="{% url 'posted:like' post.pk %}"><span id="like">{{ post.like }}</span>???</a></p>
 
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     {% empty %}
-                        <p class="text-center my_search_text">??????????</p>
+                        <p class="text-center my_search_text">??????????????</p>
                     {% endfor %}
                     </div>
                     {% if paginator %}
