@@ -194,7 +194,6 @@ def idea_generator(request):
     }
     return render(request, 'posted/post_form.html', context)
 
-
 def post_detail(request, id):
     post = get_object_or_404(Post, id=id)
     form = CommentForm(request.POST or None)
@@ -253,7 +252,6 @@ def post_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
-    
     context = {
         'paginator': paginator,
         'page_obj': page_obj,
@@ -264,6 +262,7 @@ def post_list(request):
 def post_search_list(request):
     posts = None
     keyword = None
+    like = 'いいね'
     #検索機能の実装
     if 'keyword' in request.GET:
         keyword = request.GET.get('keyword')
@@ -271,7 +270,7 @@ def post_search_list(request):
     #ページネーションの実装
     paginator = Paginator(posts, 10)
     try:
-        page = int(request.GET.get('page', '2'))
+        page = int(request.GET.get('page', '1'))
     except:
         page = 1
     try:
@@ -284,7 +283,8 @@ def post_search_list(request):
     context = {
         'keyword':keyword, 
         'posts':posts, 
-        'csrf_token':csrf_token
+        'csrf_token':csrf_token,
+        'like': like,
         }
 
     return render(request, 'posted/post_search_list.html', context)
