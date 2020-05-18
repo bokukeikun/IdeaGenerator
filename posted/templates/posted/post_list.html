@@ -99,7 +99,7 @@
                         <div class="blog__sidebar__search">
                             <form method="GET" action="{% url 'posted:post_search_list' %}">
                             {% csrf_token %}
-                                <input type="text" name="keyword" placeholder="Searching...">
+                                <input type="search" name="keyword" placeholder="Searching...">
                                 <button type="submit"><i class="fa fa-search"></i>検索</button>
                             </form>
                         </div>
