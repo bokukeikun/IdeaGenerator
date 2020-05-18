@@ -58,8 +58,7 @@ def idea_generator(request):
     Categories = {'phisi': Phisi_li, 'medi': Medi_li, 'chemi': Chemi_li, 'tech1_': Tech1_li, 'tech_2': Tech2_li, 'energy': Energy_li, 'nature': Nature_li, 'agri': Agri_li, 'space': Space_li, 'buisiness': Buisiness_li, 'infra': Infra_li, 'poli': Poli_li, 'nation': Nation_li, 'inst1_': Inst1_li, 
                'inst2_': Inst2_li, 'edu': Edu_li, 'cust': Cust_li, 'art': Art_li, 'life': Life_li, 'sense': Sense_li, 'feeling': Feeling_li, 'bp': BP_li}
 
-    Categories_ja = {'phisi': '物理', 'medi': '医学', 'chemi': '化学', 'tech1_': 'テクノロジー１', 'tech_2': 'テクノロジー２', 'energy': 'エネルギー', 'nature': '自然', 'agri': '農業', 'space': '宇宙', 'buisiness': 'ビジネス', 'infra': 'インフラ', 'poli': '政治', 'nation': '国', 'inst1_': '施設１', 
-               'inst2_': '施設２', 'edu': '教育', 'cust': '習慣', 'art': '芸術', 'life': '生活・暮らし', 'sense': '五感', 'feeling': '感情', 'bp': '体のパーツ'}
+    Categories_ja = {'phisi': '物理', 'medi': '医学', 'chemi': '化学', 'tech1_': 'テクノロジー１', 'tech_2': 'テクノロジー２', 'energy': 'エネルギー', 'nature': '自然', 'agri': '農業', 'space': '宇宙', 'buisiness': 'ビジネス', 'infra': 'インフラ', 'poli': '政治', 'nation': '国', 'inst1_': '施設１', 'inst2_': '施設２', 'edu': '教育', 'cust': '習慣', 'art': '芸術', 'life': '生活・暮らし', 'sense': '五感', 'feeling': '感情', 'bp': '体のパーツ'}
 
 
     a = request.GET.get('test1')
@@ -249,23 +248,18 @@ def comment_delete(request, pk):
 @login_required(redirect_field_name='login')
 def post_list(request):
     object_list = Post.objects.all()
-    paginator = Paginator(object_list, 10) # Show 10 posts per page.
+    category_num = Category.objects.annotate(number_of_post=Count('post')).order_by('timestamp')
+    paginator = Paginator(object_list, 10) # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    # page_obj = Post.objects.all() # paginationの場合は上
-
-    # if keyword:
-    #     page_obj = page_obj.filter(
-    #               Q(tags__name__icontains=keyword)
-    #            )
-    #     messages.success(request, '「{}」の検索結果'.format(keyword))
-    
-    context = {
+    contents = {
+        'post' : Post.objects.all(),
+        'category_num' : category_num,
         'paginator': paginator,
         'page_obj': page_obj,
         'object_list' : object_list,     
     }
-    return render(request, 'posted/post_list.html', context)
+    return render(request, 'posted/post_list.html', contents)
 
 def post_search_list(request):
     posts = None
@@ -373,6 +367,8 @@ class TagListView(ListView):
 class CategoryPostView(ListView):
     model = Post
     template_name = 'posted/category_post.html'
+    # queryset = Category.objects.annotate(
+    #     num_posts=Count('post', filter=Q(post__is_public=True)))
 
     def get_queryset(self):
         category_slug = self.kwargs['category_slug']

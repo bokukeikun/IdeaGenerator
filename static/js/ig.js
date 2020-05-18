@@ -51,8 +51,8 @@
     
 
 
-   var Categories_ja = {'tech': 'テクノロジー', 'agri': '農業', 'web': 'Web', 'AI': 'AI', 'religion': '宗教', 'feeling': '五感' };
-   
+   var Categories_ja = {'phisi': '物理', 'medi': '医学', 'chemi': '化学', 'tech1_': 'テクノロジー１', 'tech_2': 'テクノロジー２', 'energy': 'エネルギー', 'nature': '自然', 'agri': '農業', 'space': '宇宙', 'buisiness': 'ビジネス', 'infra': 'インフラ', 'poli': '政治', 'nation': '国', 'inst1_': '施設１', 'inst2_': '施設２', 'edu': '教育', 'cust': '習慣', 'art': '芸術', 'life': '生活・暮らし', 'sense': '五感', 'feeling': '感情', 'bp': '体のパーツ'};
+
 
    var category1_get = arg.test1;
    var category2_get = arg.test2;
@@ -76,6 +76,7 @@
     }
 
     $('.idea_generated').on('click', function(){
+        $("select option").attr("selected", false);
 
         for (var i=0; i<4; i++) {
             if (category1 == null) {
@@ -110,6 +111,7 @@
     });
         
     $('.idea_generated').on('click', function(){
+        // $("select option").attr("selected", false);
         var tag1 = $(this).find('.idea1').text();
         var tag2 = $(this).find('.idea2').text();
         var tag3 = $(this).find('.idea3').text();
