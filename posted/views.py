@@ -254,6 +254,7 @@ def post_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     
+    
     context = {
         'paginator': paginator,
         'page_obj': page_obj,
