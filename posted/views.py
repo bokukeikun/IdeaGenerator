@@ -279,12 +279,14 @@ def post_search_list(request):
         posts = paginator.page(paginator.num_pages)
     #追加
     csrf_token = request.GET.get('csrfmiddlewaretoken')
+    page_obj = paginator.get_page(page)
     #修正
     context = {
         'keyword':keyword, 
         'posts':posts, 
         'csrf_token':csrf_token,
         'like': like,
+        'page_obj': page_obj,
         }
 
     return render(request, 'posted/post_search_list.html', context)
