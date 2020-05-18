@@ -104,12 +104,12 @@
                         <div class="blog__sidebar__tags">
                             <h5>Popular Tag</h5>
                             {% for tag in tag_num %}
-                                {% if tag.number_of_post > 5 %}
+                            {% if tag.number_of_post > 5 %}
                                 <a href="{% url 'posted:popular_tag_post' tag.slug %}">{{ tag.name }}</a>
-                                {% endif %}
+                            {% endif %}
                             {% empty %}
                                 <a>カテゴリはありません。</a>
-                            {% endfor %}                          
+                            {% endfor %}
                         </div>
                         <div class="blog__sidebar__recent">
                             <h5>Idea Ranking</h5>

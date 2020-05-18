@@ -248,9 +248,12 @@ def comment_delete(request, pk):
 def post_list(request):
     object_list = Post.objects.all()
     category_num = Category.objects.annotate(number_of_post=Count('post')).order_by('timestamp')
+    tag_num = Tag.objects.annotate(number_of_post=Count('post')).order_by('-number_of_post')[:10]
+    like_num = Post.objects.annotate(number_of_like=Count('like')).order_by('-number_of_like')[:5]
     paginator = Paginator(object_list, 10) # Show 10 posts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    
     
     context = {
         'post': Post.objects.all(),
@@ -258,7 +261,8 @@ def post_list(request):
         'paginator': paginator,
         'page_obj': page_obj,
         'object_list' : object_list,
-         
+        'tag_num': tag_num, 
+        'like_num': like_num,
     }
     return render(request, 'posted/post_list.html', context)
 
@@ -267,6 +271,8 @@ def post_search_list(request):
     posts = None
     keyword = None
     category_num = Category.objects.annotate(number_of_post=Count('post')).order_by('timestamp')
+    tag_num = Tag.objects.annotate(number_of_post=Count('post')).order_by('-number_of_post')[:10]
+    like_num = Post.objects.annotate(number_of_like=Count('like')).order_by('-number_of_like')[:5]
     like = 'いいね'
     search = '検索'
     #検索機能の実装
@@ -296,6 +302,8 @@ def post_search_list(request):
         'search': search,
         'page_obj': page_obj,
         'category_num': category_num,  
+        'tag_num': tag_num,
+        'like_num': like_num,
 
         }
 
@@ -307,6 +315,47 @@ def category_post(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     queryset = Post.objects.all().filter(Q(category__name__icontains=category))
     category_num = Category.objects.annotate(number_of_post=Count('post')).order_by('timestamp')
+    tag_num = Tag.objects.annotate(number_of_post=Count('post')).order_by('-number_of_post')[:10]
+    like_num = Post.objects.annotate(number_of_like=Count('like')).order_by('-number_of_like')[:5]
+    paginator = Paginator(queryset, 10) # Show 10 posts per page.
+
+    try:
+        page = int(request.GET.get('page', '1'))
+    except:
+        page = 1
+    try:
+        queryset = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        queryset = paginator.page(paginator.num_pages)
+
+    #追加
+    csrf_token = request.GET.get('csrfmiddlewaretoken')
+    page_obj = paginator.get_page(page)
+    
+    
+    context = {
+        'post': Post.objects.all(),
+        'category_num': category_num, 
+        'paginator': paginator,
+        'page_obj': page_obj,
+        'category': category,
+        'queryset': queryset,
+        'csrf_token':csrf_token,
+        'tag_num': tag_num, 
+        'like_num': like_num,
+
+
+    }
+    return render(request, 'posted/category_post.html', context)
+
+
+@login_required(redirect_field_name='login')
+def popular_tag_post(request, tag_slug):
+    tags = get_object_or_404(Tag, slug=tag_slug)
+    queryset = Post.objects.all().filter(Q(tags__name__icontains=tags))
+    category_num = Category.objects.annotate(number_of_post=Count('post')).order_by('timestamp')
+    tag_num = Tag.objects.annotate(number_of_post=Count('post')).order_by('-number_of_post')[:10]
+    like_num = Post.objects.annotate(number_of_like=Count('like')).order_by('-number_of_like')[:5]
     paginator = Paginator(queryset, 10) # Show 10 posts per page.
     try:
         page = int(request.GET.get('page', '1'))
@@ -326,13 +375,15 @@ def category_post(request, category_slug):
         'category_num': category_num, 
         'paginator': paginator,
         'page_obj': page_obj,
-        'category': category,
+        'tags': tags,
         'queryset': queryset,
         'csrf_token':csrf_token,
+        'tag_num': tag_num,
+        'like_num': like_num,
+
          
     }
-    return render(request, 'posted/category_post.html', context)
-
+    return render(request, 'posted/popular_tag_post.html', context)
 # @login_required(redirect_field_name='login')
 # def post_list(request):
 #     object_list = Post.objects.all()

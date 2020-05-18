@@ -118,69 +118,32 @@
                         </div>
                         <div class="blog__sidebar__tags">
                             <h5>Popular Tag</h5>
-                            <a href="#">サイエンス</a>
-                            <a href="#">Marketing</a>
-                            <a href="#">Payment</a>
-                            <a href="#">Travel</a>
-                            <a href="#">Finance</a>
-                            <a href="#">Videos</a>
-                            <a href="#">Ideas</a>
-                            <a href="#">Unique</a>
-                            <a href="#">Music</a>
-                            <a href="#">Key</a>
+                            {% for tag in tag_num %}
+                                {% if tag.number_of_post %}
+                                <a href="{% url 'posted:popular_tag_post' tag.slug %}">{{ tag.name }}</a>
+                                {% endif %}
+                            {% empty %}
+                                <a>カテゴリはありません。</a>
+                            {% endfor %}
+                            
                         </div>
                         <div class="blog__sidebar__recent">
                             <h5>Idea Ranking</h5>
-                            <a href="#" class="blog__sidebar__recent__item">
+                            {% for post in like_num %}
+                            {% if post.number_of_like %}
+                            <a href="{% url 'posted:post_detail' post.id %}" class="blog__sidebar__recent__item">
                                 <div class="blog__sidebar__recent__item__pic">
                                     <img src="{% static 'img/blog/recent-1.jpg' %}" alt="">
+                                    {% comment %} <img src="{{ post.author.profile.image.url }}" alt=""> {% endcomment %}
                                 </div>
                                 <div class="blog__sidebar__recent__item__text">
-                                    <span><i class="fa fa-tags"></i> Shopping</span>
-                                    <h6>Tortoise grilled on salt</h6>
-                                    <p><i class="fa fa-clock-o"></i> 19th March, 2019</p>
+                                    <span><i class="fa fa-tags"></i>{{ post.title }}</span>
+                                    <h6>{{ post.content }}</h6>
+                                    <p><i class="fa fa-clock-o"></i> {{ post.published_at|date }}</p>
                                 </div>
                             </a>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="{% static 'img/blog/recent-2.jpg' %}" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <span><i class="fa fa-tags"></i> Hotels</span>
-                                    <h6>Shrimp floured and fried</h6>
-                                    <p><i class="fa fa-clock-o"></i> 22th March, 2019</p>
-                                </div>
-                            </a>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="{% static 'img/blog/recent-3.jpg' %}" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <span><i class="fa fa-tags"></i> Restaurant</span>
-                                    <h6>Sweet and sour pork ribs</h6>
-                                    <p><i class="fa fa-clock-o"></i> 25th March, 2019</p>
-                                </div>
-                            </a>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="{% static 'img/blog/recent-4.jpg' %}" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <span><i class="fa fa-tags"></i> Videos</span>
-                                    <h6>Crab fried with tamarind</h6>
-                                    <p><i class="fa fa-clock-o"></i> 19th March, 2019</p>
-                                </div>
-                            </a>
-                            <a href="#" class="blog__sidebar__recent__item">
-                                <div class="blog__sidebar__recent__item__pic">
-                                    <img src="{% static 'img/blog/recent-5.jpg' %}" alt="">
-                                </div>
-                                <div class="blog__sidebar__recent__item__text">
-                                    <span><i class="fa fa-tags"></i> Travel</span>
-                                    <h6>Tortoise grilled on salt</h6>
-                                    <p><i class="fa fa-clock-o"></i> 19th March, 2019</p>
-                                </div>
-                            </a>
+                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
