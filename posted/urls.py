@@ -16,6 +16,7 @@ from posted.views import (
     post_search_list,
     category_list,
     category_post,
+    popular_tag_post,
     )
 
 app_name = 'posted'
@@ -30,7 +31,7 @@ urlpatterns = [
     path('comment_delete/<int:pk>/', comment_delete, name='comment_delete'),
     path('categories/', category_list, name='category_list'),   
     path('tags/', TagListView.as_view(), name='tag_list'),
-    path('tag/<str:tag_slug>/', TagPostView.as_view(), name='tag_post'),
+    path('tag/<str:tag_slug>/', popular_tag_post, name='popular_tag_post'),
     path('category/<str:category_slug>/', category_post, name='category_post'),
     path('mypost/', mypost, name='mypost'),
     path('mypost/<int:id>/update/', mypost_update, name='mypost_update'),
