@@ -7,7 +7,7 @@ integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfoo
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
 integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
-<header class="header">
+<header class="noimg_header">
         <div class="container-fluid mt-1">
             <div class="row">
                 <div class="col-lg-3 col-md-3">
@@ -27,8 +27,6 @@ integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifw
                                 <li><a class="text-left" href="{% url 'login' %}">ログイン</a></li>
                                 <li><a class="text-left" href="{% url 'register' %}">ログイン</a></li>
                                 {% endif %}
-
-
                                 {% comment %} <li><a  href="#">Categories</a></li>
                                 <li><a href="#">Pages</a>
                                     <ul class="dropdown">
@@ -51,8 +49,8 @@ integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifw
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="{% url 'profile' %}">設定</a>
-                                    <a class="dropdown-item" href="{% url 'posted:mypost' %}">マイポスト</a>
+                                    <a class="dropdown-item" href="{% url 'profile' %}">プロファイル</a>
+                                    <a class="dropdown-item" href="{% url 'posted:mypost' %}">マイアイデア</a>
                                     
                                 </div>
                                 
