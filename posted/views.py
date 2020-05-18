@@ -249,16 +249,10 @@ def comment_delete(request, pk):
 @login_required(redirect_field_name='login')
 def post_list(request):
     object_list = Post.objects.all()
+    category_num = Category.objects.annotate(number_of_post=Count('post')).order_by('timestamp')
     paginator = Paginator(object_list, 10) # Show 10 posts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    # page_obj = Post.objects.all() # paginationの場合は上
-
-    # if keyword:
-    #     page_obj = page_obj.filter(
-    #               Q(tags__name__icontains=keyword)
-    #            )
-    #     messages.success(request, '「{}」の検索結果'.format(keyword))
     
     context = {
         'paginator': paginator,
@@ -277,7 +271,7 @@ def post_search_list(request):
     #ページネーションの実装
     paginator = Paginator(posts, 10)
     try:
-        page = int(request.GET.get('page','1'))
+        page = int(request.GET.get('page', '2'))
     except:
         page = 1
     try:
@@ -294,40 +288,6 @@ def post_search_list(request):
         }
 
     return render(request, 'posted/post_search_list.html', context)
-
-# @login_required(redirect_field_name='login')
-# def post_list(request):
-#     object_list = None
-#     keyword = None
-#     #検索機能の実装
-#     if 'keyword' in request.GET:
-#         keyword = request.GET.get('keyword')
-#         object_list = Post.objects.all().filter(Q(tags__name__icontains=keyword))
-#         messages.success(request, '「{}」の検索結果'.format(keyword))
-#     #ページネーションの実装
-#     paginator = Paginator(object_list, 10)
-#     try:
-#         page_number = int(request.GET.get('page', '1'))
-#     except:
-#         page_number = 1
-#     # try:
-#     #     object_list = paginator.page(page_number)
-#     # except (EmptyPage, InvalidPage):
-#     #     object_list = paginator.page(paginator.num_pages)
-
-#     csrf_token = request.GET.get('csrfmiddlewaretoken')
-
-#     context = {
-#         'keyword':keyword, 
-#         'object_list':object_list, 
-#         'paginator': paginator, 
-#         'csrf_token':csrf_token,
-#         }
-
-#     return render(request, 'posted/post_list.html', context)
-
-
-
 
 
 @login_required(redirect_field_name='login')
