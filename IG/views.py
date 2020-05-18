@@ -27,8 +27,8 @@ def index(request):
     Phisi_li = {'phisi0': '音', 'phisi1': '光', 'phisi2': '波', 'phisi3': '熱', 'phisi4': '電磁', 'phisi5': '天体', 'phisi6': 'ドップラー現象', 'phisi7': '地球物理学', 'phisi8': '物理気象'}
     Medi_li = {'medi0': '解剖', 'medi1': '生理', 'medi2': '薬学', 'medi3': '組織学', 'medi4': '内科', 'medi5': '外科', 'medi6': '分子生物'}
     Chemi_li = {'chemi0': '化学反応', 'chemi1': '気体', 'chemi2': '固体', 'chemi3': '液体', 'chemi4': '生化学', 'chemi5': '環境化学', 'chemi6': '有機化学', 'chemi7': '無機化学'}
-    Tech1_li = {'tech1_0': 'AR', 'tech1_1': 'VR', 'tech1_2': 'AI', 'tech1_3': 'IoT', 'tech1_4': '5G', 'tech1_5': '6G', 'tech1_6': 'CG', 'tech1_7': 'スマートスピーカー', 'tech1_8': '3dプリンタ', 'tech1_9': 'ブロックチェーン', 'tech1_10': '自動運転', 'tech1_11': '言語翻訳'}
-    Tech2_li = {'tech_20': '仮想通貨', 'tech_21': 'インターネット', 'tech_22': 'スマホ', 'tech_23': 'ウェアラブル', 'tech_24': 'xR', 'tech_25': '3Dプリンタ', 'tech_26': 'スマートスピーカー', 'tech_27': '培養肉', 'tech_28': '自動化', 'tech_29': 'ロボット', 'tech_210': 'オンライン'}
+    Tech1_li = {'tech1_0': 'AR', 'tech1_1': 'VR', 'tech1_2': 'AI', 'tech1_3': 'IoT', 'tech1_4': '5G', 'tech1_5': '6G', 'tech1_6': 'CG', 'tech1_7': 'ドローン', 'tech1_8': '3dプリンタ', 'tech1_9': 'ブロックチェーン', 'tech1_10': '自動運転', 'tech1_11': '言語翻訳'}
+    Tech2_li = {'tech2_0': '仮想通貨', 'tech2_1': 'インターネット', 'tech2_2': 'スマホ', 'tech2_3': 'ウェアラブル', 'tech2_4': 'xR', 'tech2_5': '3Dプリンタ', 'tech2_6': 'スマートスピーカー', 'tech2_7': '培養肉', 'tech2_8': '自動化', 'tech2_9': 'ロボット', 'tech2_10': 'オンライン'}
     Energy_li = {'energy0': '風力', 'energy1': '火力', 'energy2': '石炭', 'energy3': '石油', 'energy4': 'バイオエネルギー', 'energy5': '太陽光', 'energy6': 'フリーエネルギー', 'energy7': '永久機関'}
     Nature_li = {'nature0': '山', 'nature1': '川', 'nature2': '砂漠', 'nature3': '海', 'nature4': '動物', 'nature5': '植物', 'nature6': '虫'}
     Agri_li = {'agri0': '自然農法', 'agri1': '有機栽培', 'agri2': '植物工場', 'agri3': '家庭菜園'}
@@ -47,7 +47,7 @@ def index(request):
     Feeling_li = {'feeling0': '喜', 'feeling1': '怒', 'feeling2': '哀', 'feeling3': '楽', 'feeling4': '恥'}
     BP_li = {'bp0': '頭', 'bp1': '腕', 'bp2': '腹', 'bp3': 'お尻', 'bp4': '足', 'bp5': 'ちんちん', 'bp6': '臓器'}
     
-    # Sience_li = {'phisi': '物理', 'medi': '医学', 'chemi': '化学', 'tech1_': 'テクノロジー１', 'tech_2': 'テクノロジー２',}
+    # Sience_li = {'phisi': '物理', 'medi': '医学', 'chemi': '化学', 'tech1_': 'テクノロジー１', 'tech2_': 'テクノロジー２',}
     # Envi_li = {'energy': 'エネルギー', 'nature': '自然', 'agri': '農業', 'space': '宇宙'}
     # Society_li = {'buisiness': 'ビジネス', 'infra': 'インフラ', 'poli': '政治', 'nation': '国', 'inst1_': '施設１', 'inst2_': '施設２',}
     # Culture_li = {'edu': '教育', 'cust': '習慣', 'art': '芸術', 'life': '生活・暮らし'}
