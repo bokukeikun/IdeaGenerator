@@ -380,8 +380,7 @@ def popular_tag_post(request, tag_slug):
         'csrf_token':csrf_token,
         'tag_num': tag_num,
         'like_num': like_num,
-
-         
+  
     }
     return render(request, 'posted/popular_tag_post.html', context)
 # @login_required(redirect_field_name='login')
