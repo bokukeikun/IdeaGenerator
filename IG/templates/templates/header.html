@@ -25,7 +25,7 @@ integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifw
                                 <li><a class="text-left" href="{% url 'profile' %}">プロフィール</a></li>
                                 {% if not user.is_authenticated %}
                                 <li><a class="text-left" href="{% url 'login' %}">ログイン</a></li>
-                                <li><a class="text-left" href="{% url 'register' %}">ログイン</a></li>
+                                <li><a class="text-left" href="{% url 'register' %}">サインイン</a></li>
                                 {% endif %}
 
 

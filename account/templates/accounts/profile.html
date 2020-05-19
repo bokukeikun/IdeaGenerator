@@ -45,7 +45,7 @@
                               <div class="row">
                                   <div class="col-lg-12">
                                       <div class="row">
-                                      {% for post in myposts %}
+                                      {% for post in page_obj %}
                                           <div class="col-lg-4 col-md-6">
                                               <div class="blog__item">
                                                   <div class="blog__item__text">
@@ -60,9 +60,12 @@
                                                       {% endif %}
                                                       <p>{{ post.content|safe }}</p>
                                                       <ul class="blog__item__widget">
-                                                          {% for category in post.category.all %}
-                                                              <li><i class="fa fa-clock-o"></i> {{ category.name }} </li>
-                                                          {% endfor %}
+                                                          <li>
+                                                              <i class="fa fa-clock-o"></i> 
+                                                              {% for category in post.category.all %}
+                                                                  {{ category.name }} 
+                                                              {% endfor %}
+                                                          </li>
                                                           <li><i class="fa fa-clock-o"></i> {{ post.published_at|date }}</li>
                                                           <li><i class="fa fa-user"></i>  {{ post.author }}</li>
                                                       </ul>
@@ -72,11 +75,19 @@
                                       {% endfor %}
                                       </div>
                                       <div class="blog__pagination">
-                                          <a href="#"><i class="fa fa-long-arrow-left"></i> Pre</a>
-                                          <a href="#">1</a>
-                                          <a href="#">2</a>
-                                          <a href="#">3</a>
-                                          <a href="#">Next <i class="fa fa-long-arrow-right"></i></a>
+                                          {% if page_obj.has_previous %}
+                                          <a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-long-arrow-left"></i> Pre</a>
+                                          {% endif %}
+                                          {% for num in paginator.page_range %}
+                                          {% if page_obj.number == num %}
+                                          <span class="page_now">{{ num }}</span>
+                                          {% else %}
+                                          <a href="?page={{ num }}">{{ num }}</a>
+                                          {% endif %}
+                                          {% endfor %}
+                                          {% if page_obj.has_next %}
+                                          <a href="?page={{ page_obj.next_page_number }}">Next <i class="fa fa-long-arrow-right"></i></a>
+                                          {% endif %}
                                       </div>
                                   </div>
                                   <div class="col-lg-4">
@@ -86,14 +97,9 @@
                           </div>
                       </section>
                     </div>
+              </div>
             </div>
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
     </section>
 
 {% endblock body %}
@@ -109,8 +115,8 @@
           <br>
           <h4 class="card-text">メール: {{ user.email }}</h4>
         
-          <a href={% url 'profile_update' %} class="btn btn-primary">更新</a>
-          <a href={% url 'logout' %} class="btn btn-primary">ログアウト</a>
+          <a href="{% url 'profile_update' %}" class="btn btn-primary">更新</a>
+          <a href="{% url 'logout' %}" class="btn btn-primary">ログアウト</a>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-
+from  django.core.paginator import Paginator, EmptyPage, InvalidPage
 from django.contrib.auth.models import User
 from posted.models import Post
 
@@ -56,9 +56,14 @@ def logout_user(request):
 def profile(request):
     mypost_objs = Post.objects.filter(author=request.user)
     qs = Post.objects.filter(author=request.user)
+    paginator = Paginator(qs, 12) # Show 10 posts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
         'qs': qs,
-        'myposts': mypost_objs
+        'page_obj': page_obj,
+        'paginator': paginator,
+        'myposts': mypost_objs,
         }
     return render(request, 'accounts/profile.html', context)
 
