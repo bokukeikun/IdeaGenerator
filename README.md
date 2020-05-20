@@ -4,7 +4,6 @@
 ローカル環境で開発し、デプロイをHerokuで行う。
 
 
-
 (1)ローカル環境のセッティング
 １、 .gitignore
 local_settings.py をコメントアウト
