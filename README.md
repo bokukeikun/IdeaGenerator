@@ -4,13 +4,13 @@
 ローカル環境で開発し、デプロイをHerokuで行う。
 
 
-(1)ローカル環境のセッティング
+（１）ローカル環境のセッティング
 １、 .gitignore
 local_settings.py をコメントアウト
 
 ２、 pip install 後、　pip freeze > requirements.txt を必ず実行
 
-3, python manage.py runserver
+3、 python manage.py runserver
 
 ４、　編集後
 git add .
