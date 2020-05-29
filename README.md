@@ -19,15 +19,15 @@ git push origin branch_name
 
 
 （２）heroku deploy
-１、　manage.py 
+１、　manage.py ファイル
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.local_settings')
 ⇩
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 
-２、 .gitignore
+２、 .gitignore ファイル
 local_settings.py のコメントアウトを元に戻す
 
-３、push 
+３、push する
 git add .
 git commit -m 'ryo/kei heroku deploy'
 git push heroku master
