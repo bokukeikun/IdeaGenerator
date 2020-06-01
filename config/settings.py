@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # Third Party
     'crispy_forms',
     'rest_framework',
+    'storages',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -142,7 +143,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 MEDIA_URL = '/media/'
 
 LOGIN_REDIRECT_URL = 'profile'
@@ -150,3 +151,12 @@ LOGIN_URL = 'login'
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+
+AWS_ACCESS_KEY_ID = 'AKIAWK4K7TCQ2Q737TJM'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'grippy-ig-0301'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
